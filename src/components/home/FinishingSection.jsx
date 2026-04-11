@@ -52,7 +52,7 @@ const finishingCards = [
   },
 ]
 
-function ArrowIcon() {
+const ArrowIcon = () => {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4">
       <path
@@ -66,7 +66,7 @@ function ArrowIcon() {
   )
 }
 
-export default function FinishingSection() {
+const FinishingSection = () => {
   const sectionRef = useRef(null)
   const railRef = useRef(null)
 
@@ -115,7 +115,7 @@ export default function FinishingSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#232323] text-white"
+      className="relative bg-page text-foreground"
       style={{ height: '300vh' }}
     >
       <div className="sticky top-16 flex min-h-screen items-center overflow-hidden">
@@ -140,13 +140,13 @@ export default function FinishingSection() {
                 The Finishing Touch
               </h2>
 
-              <p className="mt-5 max-w-sm text-sm leading-7 text-white/55 md:text-[15px]">
+              <p className="mt-5 max-w-sm text-sm leading-7 text-muted-strong md:text-[15px]">
                 Precision lies in every detail. Explore our curated bath
                 collections designed to enhance modern living with style,
                 performance, and lasting quality.
               </p>
 
-              <button className="mt-8 inline-flex items-center gap-3 border border-white/35 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-white/90 transition-colors duration-300 hover:border-white hover:bg-white hover:text-black">
+              <button className="mt-8 inline-flex items-center gap-3 border border-border px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-foreground/90 transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page">
                 View More
                 <ArrowIcon />
               </button>
@@ -193,7 +193,7 @@ export default function FinishingSection() {
     </div>
 
     {/* TEXT BELOW IMAGE */}
-    <div className="mt-3 flex items-center justify-between text-white">
+    <div className="mt-3 flex items-center justify-between text-foreground">
       <span className="text-[13px] md:text-[14px] tracking-[0.06em]">
         {card.title}
       </span>
@@ -207,10 +207,10 @@ export default function FinishingSection() {
 
               {/* PROGRESS BAR */}
               <div className="mt-6 flex items-center gap-3">
-                <div className="h-[2px] flex-1 rounded-full bg-white/14">
+                <div className="h-[2px] flex-1 rounded-full bg-border">
                   <motion.div
                     style={{ scaleX: fill }}
-                    className="h-full origin-left rounded-full bg-white"
+                    className="h-full origin-left rounded-full bg-foreground"
                   />
                 </div>
               </div>
@@ -222,3 +222,5 @@ export default function FinishingSection() {
     </section>
   )
 }
+
+export default FinishingSection

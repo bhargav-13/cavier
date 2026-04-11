@@ -1,6 +1,6 @@
-import { ArrowRight, ChevronRight, Heart, ShoppingCart } from 'lucide-react'
+import { ChevronRight, Heart, ShoppingCart } from 'lucide-react'
 
-function Stars() {
+const Stars = () => {
   return (
     <div className="flex items-center justify-center gap-0.5 text-white">
       {[...Array(5)].map((_, index) => (
@@ -17,7 +17,7 @@ function Stars() {
   )
 }
 
-function ProductCard({ item }) {
+const ProductCard = ({ item }) => {
   return (
     <article className="group">
       <div className="relative overflow-hidden rounded-lg h-[300px]">
@@ -60,17 +60,17 @@ function ProductCard({ item }) {
   )
 }
 
-export default function ProductShowcaseSection({
+const ProductShowcaseSection = ({
   title,
   items,
   ctaLabel = 'View More',
   className = '',
-}) {
+}) => {
   return (
-    <section className={`bg-[#1f1f1f] text-white ${className}`.trim()}>
-      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20">
+    <section className={`bg-surface text-foreground ${className}`.trim()}>
+      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-10">
         <div className="mb-8 md:mb-10">
-          <h2 className="text-[30px] font-normal tracking-[0.03em] text-white md:text-[42px]">
+          <h2 className="text-[30px] font-normal tracking-[0.03em] text-foreground md:text-[42px]">
             {title}
           </h2>
         </div>
@@ -84,7 +84,7 @@ export default function ProductShowcaseSection({
         <div className="mt-10 flex justify-center">
           <button
             type="button"
-            className="inline-flex items-center gap-3 border border-white px-4 py-2 text-sm  text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
+            className="inline-flex items-center gap-3 border border-border px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page"
           >
             {ctaLabel}
             <ChevronRight className="h-4 w-4" />
@@ -94,3 +94,5 @@ export default function ProductShowcaseSection({
     </section>
   )
 }
+
+export default ProductShowcaseSection

@@ -14,7 +14,7 @@ const craftCards = [
   },
 ]
 
-function ArrowIcon() {
+const ArrowIcon = () => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -33,9 +33,9 @@ function ArrowIcon() {
   )
 }
 
-export default function CraftSection() {
+const CraftSection = () => {
   return (
-    <section className="bg-[#202020] text-white">
+    <section className="bg-page text-foreground">
       <div className="container mx-auto px-6 py-16 md:px-12 md:py-20">
         <div className="">
         <motion.div
@@ -45,7 +45,7 @@ export default function CraftSection() {
           viewport={{ once: true, amount: 0.4 }}
           className="mb-8 md:mb-10"
         >
-          <h2 className="text-[28px] leading-tight md:text-4xl md:leading-tight font-normal tracking-[0.02em] text-white">
+          <h2 className="text-[28px] leading-tight md:text-4xl md:leading-tight font-normal tracking-[0.02em] text-foreground">
             Crafted for Every Bath Space
           </h2>
         </motion.div>
@@ -72,7 +72,7 @@ export default function CraftSection() {
 
               {/* <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-black/14 to-black/0" /> */}
 
-              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 text-sm md:text-lg md:tracking-[0.01em] text-white">
+               <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 text-sm md:text-lg md:tracking-[0.01em] text-foreground">
                 <span className="whitespace-nowrap">{card.title}</span>
                 <ArrowIcon />
               </div>
@@ -84,3 +84,5 @@ export default function CraftSection() {
     </section>
   )
 }
+
+export default CraftSection

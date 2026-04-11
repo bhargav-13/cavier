@@ -1,6 +1,6 @@
 import { ChevronRight } from 'lucide-react'
 
-function InsightCard({ item }) {
+const InsightCard = ({ item }) => {
   return (
     <article className="group">
       <div className="overflow-hidden">
@@ -21,16 +21,16 @@ function InsightCard({ item }) {
   )
 }
 
-export default function InsightsSection({
+const InsightsSection = ({
   title,
   items,
   ctaLabel = 'View More',
   className = '',
-}) {
+}) => {
   return (
-    <section className={`bg-[#202020] text-white ${className}`.trim()}>
+    <section className={`bg-page text-foreground ${className}`.trim()}>
       <div className="mx-auto max-w-7xl px-6 py-14 md:px-12 md:py-16">
-        <h2 className="mb-8 text-[30px] font-normal tracking-[0.03em] text-white md:text-[42px]">
+          <h2 className="mb-8 text-[30px] font-normal tracking-[0.03em] text-foreground md:text-[42px]">
           {title}
         </h2>
 
@@ -43,7 +43,7 @@ export default function InsightsSection({
         <div className="mt-8 flex justify-center">
           <button
             type="button"
-            className="inline-flex items-center gap-3 border border-white px-4 py-2 text-sm  text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
+            className="inline-flex items-center gap-3 border border-border px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page"
           >
             {ctaLabel}
             <ChevronRight className="h-3 w-3" />
@@ -53,3 +53,5 @@ export default function InsightsSection({
     </section>
   )
 }
+
+export default InsightsSection

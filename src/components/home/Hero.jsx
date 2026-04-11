@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroImage from "../../assets/home/hero.jpg";
 
-export default function Hero() {
+const Hero = () => {
   const { scrollY } = useScroll();
 
   const y1 = useTransform(scrollY, [0, 500], [0, 150]);
@@ -64,7 +64,7 @@ export default function Hero() {
             delay: 1.4,
             duration: 1,
           }}
-          className="text-white mt-6 max-w-xl mx-auto text-sm tracking-wide text-center"
+          className="text-white mt-6 max-w-2xl mx-auto text-sm tracking-wide text-center"
         >
           Eco-friendly, lead-free bath fittings designed to meet global safety standards. Pioneering innovation with high-performance solutions for modern infrastructure.
         </motion.p>
@@ -96,3 +96,5 @@ export default function Hero() {
     </section>
   );
 }
+
+export default Hero

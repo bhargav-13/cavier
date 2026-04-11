@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 
-export default function ProductCard({ title, category, image }) {
+const ProductCard = ({ title, category, image }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -21,3 +21,5 @@ export default function ProductCard({ title, category, image }) {
     </motion.div>
   )
 }
+
+export default ProductCard

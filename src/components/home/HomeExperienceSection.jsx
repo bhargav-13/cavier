@@ -33,7 +33,7 @@ const experienceCards = [
   },
 ]
 
-export default function HomeExperienceSection() {
+const HomeExperienceSection = () => {
   return (
     <ExperienceCarouselSection
       title="Experiences That Speak for Quality"
@@ -42,3 +42,5 @@ export default function HomeExperienceSection() {
     />
   )
 }
+
+export default HomeExperienceSection

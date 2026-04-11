@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
 
-function StarRow() {
+const StarRow = () => {
   return (
     <div className="flex items-center gap-1 text-[#f0c44c]">
       {[...Array(5)].map((_, index) => (
@@ -15,11 +15,11 @@ function StarRow() {
   )
 }
 
-export default function ExperienceCarouselSection({
+const ExperienceCarouselSection = ({
   title,
   buttonLabel = 'Explore Products',
   cards,
-}) {
+}) => {
   const sectionRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
@@ -91,7 +91,7 @@ export default function ExperienceCarouselSection({
                 return (
                   <motion.article
                     key={index}
-                    className="absolute w-[280px] md:w-[320px] rounded-[18px] border border-white/20 bg-[#2a2a2a] p-5 shadow-xl"
+                    className="absolute w-[280px] md:w-[420px] rounded-[18px] border border-white/20 bg-[#2a2a2a] p-5 shadow-xl"
                     style={{
                       x,
                       scale,
@@ -102,16 +102,16 @@ export default function ExperienceCarouselSection({
                     <h3 className="text-sm font-medium">
                       {card.name}
                     </h3>
-                    <p className="text-xs text-white/40 italic">
-                      {card.role}
+                    <p className="text-xs italic">
+                      -{card.role}
                     </p>
 
-                    <p className="mt-4 text-[13px] text-white/70 leading-6">
+                    <p className="mt-4 text-[13px] leading-6">
                       {card.quote}
                     </p>
 
                     <div className="mt-5">
-                      <StarRow />
+                      <StarRow className="w-4 h-4"  />
                     </div>
                   </motion.article>
                 )
@@ -126,3 +126,5 @@ export default function ExperienceCarouselSection({
     </section>
   )
 }
+
+export default ExperienceCarouselSection

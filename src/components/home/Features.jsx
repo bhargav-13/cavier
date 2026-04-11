@@ -34,7 +34,7 @@ const features = [
   },
 ]
 
-function FeatureGlyph({ className = '' }) {
+const FeatureGlyph = ({ className = '' }) => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -58,9 +58,9 @@ function FeatureGlyph({ className = '' }) {
   )
 }
 
-export default function Features() {
+const Features = () => {
   return (
-    <section className="relative isolate overflow-hidden text-white">
+    <section className="relative isolate overflow-hidden text-foreground">
       <motion.div
         initial={{ scale: 1.08, opacity: 0.5 }}
         whileInView={{ scale: 1.02, opacity: 0.85 }}
@@ -101,7 +101,7 @@ export default function Features() {
                 <img src={feature.image} className="h-8 w-8" alt="" />
                 <h3>{feature.title}</h3>
               </div>
-              <p className="max-w-[400px] text-sm leading-7 text-[#949494] font-normal">
+              <p className="max-w-[400px] text-sm leading-7 text-muted font-normal">
                 {feature.description}
               </p>
             </motion.article>
@@ -111,3 +111,5 @@ export default function Features() {
     </section>
   )
 }
+
+export default Features

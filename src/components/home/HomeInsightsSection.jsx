@@ -21,8 +21,10 @@ const insightCards = [
   },
 ]
 
-export default function HomeInsightsSection() {
+const HomeInsightsSection = () => {
   return (
     <InsightsSection title="Insights & Inspiration" items={insightCards} />
   )
 }
+
+export default HomeInsightsSection

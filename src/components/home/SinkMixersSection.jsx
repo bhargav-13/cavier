@@ -27,6 +27,8 @@ const mixers = [
   },
 ]
 
-export default function SinkMixersSection() {
+const SinkMixersSection = () => {
   return <ProductShowcaseSection title="Cavier Sink Mixers" items={mixers} />
 }
+
+export default SinkMixersSection

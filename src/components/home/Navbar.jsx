@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Search, Menu, User, Heart, ShoppingCart } from 'lucide-react'
 import logo from "../../assets/logo1.png"
 
-export default function Navbar() {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -13,18 +13,22 @@ export default function Navbar() {
   }, [])
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 py-8 flex items-center justify-between ${
-        isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent'
+        isScrolled ? 'bg-page/80 backdrop-blur-md py-4' : 'bg-transparent'
       }`}
     >
       <div className="flex items-center gap-8">
         <div className="hidden md:flex items-center gap-6 text-sm uppercase tracking-[0.3em] font-semibold text-white">
-          <a href="#" className="hover:text-white transition-colors">Product</a>
-          <a href="#" className="hover:text-white transition-colors">Category</a>
-          <a href="#" className="hover:text-white transition-colors">Contact</a>
+          <Link to="/" className="hover:text-white transition-colors">
+            Products
+          </Link>
+          <Link to="/" className="hover:text-white transition-colors">
+            Categories
+          </Link>
+          <Link to="/" className="hover:text-white transition-colors">
+            Contact
+          </Link>
         </div>
         <div className="md:hidden">
           <Menu className="text-white w-5 h-5 cursor-pointer" />
@@ -53,6 +57,8 @@ export default function Navbar() {
           <span className="text-sm uppercase tracking-widest text-white">Search</span>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   )
 }
+
+export default Navbar
