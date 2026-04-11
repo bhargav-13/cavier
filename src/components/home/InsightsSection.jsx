@@ -43,7 +43,7 @@ const InsightsSection = ({
         <div className="mt-8 flex justify-center">
           <button
             type="button"
-            className="inline-flex items-center gap-3 border border-border px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page"
+            className="inline-flex items-center gap-3 border border-foregraound px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page"
           >
             {ctaLabel}
             <ChevronRight className="h-3 w-3" />

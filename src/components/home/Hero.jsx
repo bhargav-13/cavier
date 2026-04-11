@@ -82,7 +82,7 @@ const Hero = () => {
             backgroundColor: "#fff",
             color: "#000",
           }}
-          className="relative mt-10 px-12 py-4 text-white uppercase tracking-[4px] text-xs border border-white/40 overflow-hidden group"
+          className="relative mt-10 px-12 py-4 text-white  text-sm border border-white-forefround overflow-hidden group"
         >
           <span className="relative z-10">Explore More</span>
 

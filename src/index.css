@@ -9,8 +9,8 @@
   --color-card: #232323;
   --color-foreground: #ffffff;
   --color-muted: #949494;
-  --color-muted-strong: rgba(255, 255, 255, 0.55);
-  --color-border: rgba(255, 255, 255, 0.14);
+  --color-muted-strong: #BEBEBE;
+  --color-border:#ffffff;
   --color-border-strong: rgba(255, 255, 255, 0.22);
 }
 

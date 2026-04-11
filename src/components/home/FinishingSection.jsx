@@ -146,7 +146,7 @@ const FinishingSection = () => {
                 performance, and lasting quality.
               </p>
 
-              <button className="mt-8 inline-flex items-center gap-3 border border-border px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-foreground/90 transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page">
+              <button className="mt-8 inline-flex items-center gap-3 border border-foreground px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-foreground/90 transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page">
                 View More
                 <ArrowIcon />
               </button>
