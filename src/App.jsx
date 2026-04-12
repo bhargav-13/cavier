@@ -3,18 +3,24 @@ import Navbar from './components/home/Navbar.jsx'
 import Footer from './components/home/Footer.jsx'
 import Home from './pages/Home.jsx'
 
-
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-page font-sans text-foreground selection:bg-foreground selection:text-page">
+      {/* Footer is fixed at z-0 — always behind the scrolling content */}
+      <Footer />
+
+      {/* Main content scrolls over the footer */}
+      <div className="relative z-10 min-h-screen bg-page font-sans text-foreground selection:bg-foreground selection:text-page">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          
         </Routes>
-        <Footer />
       </div>
+
+      {/* Transparent spacer = footer height.
+          As content scrolls past, footer is revealed underneath.
+          id="site-footer" triggers Navbar to hide when in view. */}
+      <div id="site-footer" className="relative z-10 h-screen" />
     </BrowserRouter>
   )
 }

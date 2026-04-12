@@ -45,7 +45,7 @@ const ExperienceCarouselSection = ({
     <section
       ref={sectionRef}
       className="relative text-white"
-      style={{ height: `${total * 100}vh` }}
+      style={{ height: `${total * 30}vh` }}
     >
       <div className="sticky top-0 flex items-center overflow-hidden min-h-screen">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-0 md:py-16">
