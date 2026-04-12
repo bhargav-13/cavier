@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import CraftLeft from '../../assets/home/craft-image-1.png'
 import CraftRight from '../../assets/home/craft-image-2.png'

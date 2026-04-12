@@ -4,7 +4,6 @@ import HeroImage from "../../assets/home/hero.jpg";
 const Hero = () => {
   const { scrollY } = useScroll();
 
-  const y1 = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
@@ -26,18 +25,14 @@ const Hero = () => {
           duration: 2,
           ease: [0.22, 1, 0.36, 1],
         }}
-        
         className="absolute inset-0 z-0"
       >
         <img
           src={HeroImage}
           alt="Hero"
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover"
           style={{ objectPosition: "center 60%" }}
         />
-
-        {/* DARK OVERLAY */}
-        {/* <div className="absolute inset-0 " /> */}
       </motion.div>
 
       {/* CONTENT */}
@@ -70,7 +65,6 @@ const Hero = () => {
           Eco-friendly, lead-free bath fittings designed to meet global safety standards. Pioneering innovation with high-performance solutions for modern infrastructure.
         </motion.p>
 
-        {/* BUTTON */}
         <motion.button
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,12 +80,6 @@ const Hero = () => {
           className="relative mt-10 px-12 py-4 text-white  text-sm border border-white-forefround overflow-hidden group"
         >
           <span className="relative z-10">Explore More</span>
-
-          {/* LEFT LINE */}
-          {/* <span className="absolute left-0 top-1/2 w-6 h-[1px] bg-white group-hover:bg-black" /> */}
-
-          {/* RIGHT LINE */}
-          {/* <span className="absolute right-0 top-1/2 w-6 h-[1px] bg-white group-hover:bg-black" /> */}
         </motion.button>
       </motion.div>
     </section>

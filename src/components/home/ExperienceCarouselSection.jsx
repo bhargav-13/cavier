@@ -1,6 +1,5 @@
-// eslint-disable-next-line no-unused-vars
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, useState, useEffect } from 'react'
 import { ChevronRight } from 'lucide-react'
 
 const StarRow = () => {
@@ -15,13 +14,60 @@ const StarRow = () => {
   )
 }
 
+const ExperienceCard = ({ card, index, total, virtualIndex }) => {
+  const position = useTransform(virtualIndex, (value) => {
+    const baseIndex = index % total
+    const diff = baseIndex - value
+
+    if (diff > total / 2) return diff - total
+    if (diff < -total / 2) return diff + total
+
+    return diff
+  })
+
+  const x = useTransform(position, [-2, 0, 2], [-220, 0, 220])
+  const scale = useTransform(position, [-2, 0, 2], [0.8, 1, 0.8])
+  const opacity = useTransform(position, [-2, 0, 2], [0.2, 1, 0.2])
+  const zIndex = useTransform(position, (value) => Math.round(100 - Math.abs(value) * 10))
+
+  return (
+    <motion.article
+      className="
+        absolute
+        h-[160px]
+        w-[90vw]
+        rounded-[18px]
+        border border-white/20
+        bg-[#2a2a2a]
+        p-4 shadow-xl
+        flex flex-col
+      h-[200px]
+        sm:w-[320px]
+        md:h-[200px]
+        md:w-[420px]
+      "
+      style={{ x, scale, opacity, zIndex }}
+    >
+      <h3 className="text-sm font-medium sm:text-base">{card.name}</h3>
+
+      <p className="text-xs italic opacity-80">-{card.role}</p>
+
+      <p className="mt-3 text-xs leading-5 sm:text-sm sm:leading-6">{card.quote}</p>
+
+      <div className="absolute bottom-4 left-4 mt-4">
+        <StarRow />
+      </div>
+    </motion.article>
+  )
+}
+
 const ExperienceCarouselSection = ({
   title,
   buttonLabel = 'Explore Products',
   cards,
 }) => {
   const sectionRef = useRef(null)
-
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
@@ -41,21 +87,33 @@ const ExperienceCarouselSection = ({
 
   const progress = useTransform(scrollYProgress, [0, 1], [1, 0])
 
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
   return (
     <section
       ref={sectionRef}
       className="relative text-white"
-      style={{ height: `${total * 30}vh` }}
+       style={{
+        height: `${total * (isMobile ? 30 : 12)}vh`,
+      }}
     >
-      <div className="sticky top-0 flex items-center overflow-hidden min-h-screen">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-0 md:py-16">
+      <div className="sticky top-0 flex items-center overflow-hidden min-h-screen md:min-h-[400px] ">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-0 md:py-0">
 
           {/* GRID */}
           <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
 
             {/* LEFT */}
             <div className="max-w-full lg:max-w-sm sm:text-start md:text-center lg:text-left">
-              <h2 className="text-2xl sm:text-[32px] md:text-4xl font-semibold leading-tight">
+              <h2 className="text-[32px]  md:text-4xl font-semibold leading-tight">
                 {title}
               </h2>
 
@@ -66,71 +124,20 @@ const ExperienceCarouselSection = ({
             </div>
 
             {/* RIGHT */}
-            <div className="relative h-[180px] sm:h-[180px] md:h-[380px] flex flex-col justify-center">
-
-              {/* CARDS */}
-              <div className="relative flex-1 flex items-center justify-center">
-                {loopedCards.map((card, index) => {
-
-                  const position = useTransform(virtualIndex, (v) => {
-                    const baseIndex = index % total
-                    const diff = baseIndex - v
-
-                    if (diff > total / 2) return diff - total
-                    if (diff < -total / 2) return diff + total
-
-                    return diff
-                  })
-
-                  const x = useTransform(position, [-2, 0, 2], [-220, 0, 220])
-                  const scale = useTransform(position, [-2, 0, 2], [0.8, 1, 0.8])
-                  const opacity = useTransform(position, [-2, 0, 2], [0.2, 1, 0.2])
-                  const zIndex = useTransform(position, (v) =>
-                    Math.round(100 - Math.abs(v) * 10)
-                  )
-
-                  return (
-                    <motion.article
-                      key={index}
-                      className="
-                        absolute 
-                        w-[90vw] 
-                        sm:w-[320px] 
-                        md:w-[420px] 
-                        h-[160px] 
-                        sm:h-[210px] 
-                        md:h-[270px
-                        rounded-[18px] 
-                        border border-white/20 
-                        bg-[#2a2a2a] 
-                        p-4 sm:p-5 
-                        shadow-xl
-                        flex flex-col
-                      "
-                      style={{ x, scale, opacity, zIndex }}
-                    >
-                      <h3 className="text-sm sm:text-base font-medium">
-                        {card.name}
-                      </h3>
-
-                      <p className="text-xs italic opacity-80">
-                        -{card.role}
-                      </p>
-
-                      <p className="mt-3 text-xs sm:text-sm leading-5 sm:leading-6">
-                        {card.quote}
-                      </p>
-
-                      <div className="mt-4 absolute bottom-4 left-4">
-                        <StarRow />
-                      </div>
-                    </motion.article>
-                  )
-                })}
+            <div className="relative flex h-[250px] flex-col justify-center  md:h-[280px]">
+              <div className="relative flex flex-1 items-center justify-center">
+                {loopedCards.map((card, index) => (
+                  <ExperienceCard
+                    key={`${card.name}-${index}`}
+                    card={card}
+                    index={index}
+                    total={total}
+                    virtualIndex={virtualIndex}
+                  />
+                ))}
               </div>
 
-              {/* SCROLLBAR */}
-              <div className="mt-4 flex justify-end">
+              <div className="mt-4 md:mt-4 flex justify-end">
                 <div className="h-[2px] w-full bg-white/20 rounded-full overflow-hidden">
                   <motion.div
                     style={{ scaleX: progress }}

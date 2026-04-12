@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import FeaturImage from '../../assets/home/feature.jpg'
 import Clip from '../../assets/home/clip.png'
@@ -49,7 +48,7 @@ const Features = () => {
                 src={FeaturImage}
                 alt=""
                 aria-hidden="true"
-                className="h-full w-full object-cover object-center object-fit"
+                className="h-full w-full object-cover "
                 style={{ objectPosition: "center 40%" }}
               />
             </motion.div>
@@ -60,7 +59,7 @@ const Features = () => {
 
       {/* CONTENT */}
      <div className="relative z-20 mx-auto max-w-6xl px-6 md:px-12 min-h-screen flex items-center">  
-       <div className="grid grid-cols-1 gap-y-20 md:grid-cols-2">
+       <div className="grid grid-cols-1 gap-y-20 md:grid-cols-2 py-10">
 
           {features.map((feature, index) => (
             <motion.article

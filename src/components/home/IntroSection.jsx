@@ -4,12 +4,11 @@ const IntroSection = () => {
   return (
     <section className="bg-page text-foreground">
       <div className="px-6 md:px-12 py-10 md:py-20">
-
         <motion.div
           className="mx-auto max-w-5xl text-center"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }} 
+          viewport={{ once: false, amount: 0.4 }}
           variants={{
             hidden: {},
             visible: {
@@ -19,11 +18,9 @@ const IntroSection = () => {
             },
           }}
         >
-          
           <motion.p
-            className="mx-auto text-[22px] md:text-[29px] lg:text-[34px] leading-[1.45] md:leading-[1.5] tracking-[0.02em] text-muted-strong"
+            className="mx-auto text-[22px] leading-[1.45] tracking-[0.02em] text-muted-strong md:text-[29px] md:leading-[1.5] lg:text-[34px]"
           >
-            
             <motion.span
               className="inline-block font-semibold text-foreground"
               variants={{
@@ -36,7 +33,7 @@ const IntroSection = () => {
             </motion.span>{' '}
 
             <motion.span
-               variants={{
+              variants={{
                 hidden: { opacity: 0, y: 40 },
                 visible: { opacity: 1, y: 0 },
               }}
@@ -46,9 +43,7 @@ const IntroSection = () => {
             </motion.span>
 
           </motion.p>
-
         </motion.div>
-
       </div>
     </section>
   )

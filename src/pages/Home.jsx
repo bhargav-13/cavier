@@ -22,12 +22,10 @@ const Home = () => {
       <ProductShowcaseSection
         title="Cavier Cock"
         items={cockProducts}
-        className=""
       />
       <ProductShowcaseSection
         title="bathroom Accessories"
         items={cockProducts}
-        className=""
       />
       <AccessSection />
       <HomeInsightsSection />

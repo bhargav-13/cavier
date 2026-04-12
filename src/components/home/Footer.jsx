@@ -43,40 +43,9 @@ const sitemapColumns = [
 const Footer = () => {
   return (
     <div className="fixed bottom-0 left-0 h-screen w-full z-0 bg-white text-page">
-      <footer className="flex flex-col h-full py-4 md:py-6">
+      <footer className="relative flex flex-col h-full py-4 md:py-6">
 
-        {/* NAVBAR */}
-        <div className="relative px-6 md:px-12 flex items-center justify-between mb-4 md:mb-6">
-          {/* LEFT NAV */}
-          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-page">
-            <a href="#" className="hover:opacity-60 transition-opacity">Products</a>
-            <a href="#" className="hover:opacity-60 transition-opacity">Category</a>
-            <a href="#" className="hover:opacity-60 transition-opacity">Contact</a>
-          </div>
-
-          {/* LOGO */}
-          <div className="absolute left-1/2 -translate-x-1/2">
-            <img src={logo} alt="Cavier" className="w-[120px] md:w-[150px] invert" />
-          </div>
-
-          {/* RIGHT ICONS */}
-          <div className="flex items-center gap-2 md:gap-3 ml-auto">
-            <div className="hidden md:flex items-center justify-center border border-page w-9 h-9 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
-              <img src={Cart} alt="cart" className="w-4 h-4 object-contain invert" />
-            </div>
-            <div className="hidden md:flex items-center justify-center border border-page w-9 h-9 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
-              <img src={Heart} alt="wishlist" className="w-4 h-4 object-contain invert" />
-            </div>
-            <div className="hidden md:flex items-center justify-center border border-page w-9 h-9 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
-              <img src={User} alt="user" className="w-4 h-4 object-contain invert" />
-            </div>
-            <div className="hidden md:flex items-center border border-page px-3 py-1.5 gap-2 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
-              <img src={Search} alt="search" className="w-4 h-4 object-contain invert" />
-              <span className="text-sm text-page font-light">Search</span>
-            </div>
-          </div>
-        </div>
-
+       
         {/* MAIN CONTENT */}
         <div className="flex-1 flex flex-col justify-between min-h-0">
 

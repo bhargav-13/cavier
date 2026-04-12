@@ -74,8 +74,6 @@ const ArrowIcon = () => {
   );
 };
 
-// ---------------------------------------------------------------------------
-// INDIVIDUAL CARD COMPONENT
 // Handles the dynamic 3D circular curve matching the staggered image look
 // ---------------------------------------------------------------------------
 const FinishingCard = ({ card, index, trackX }) => {
@@ -160,7 +158,7 @@ const FinishingCard = ({ card, index, trackX }) => {
 
 
   
-const finishingSection = () => {
+const FinishingSection = () => {
   const sectionRef = useRef(null);
   const railRef = useRef(null);
   const [travel, setTravel] = useState(0);
@@ -248,7 +246,7 @@ const finishingSection = () => {
                 </div>
 
                 {/* PROGRESS BAR - Match exact styling from image */}
-                <div className="mt-12 md:mt-40 mr-8">
+                <div className="mt-32 md:mt-40 mr-8">
                   <div className="h-[2px] w-full rounded-full overflow-hidden">
                     <motion.div
                       style={{ scaleX: fill }}
@@ -266,4 +264,4 @@ const finishingSection = () => {
     </main>
   );
 }
-export default  finishingSection
+export default FinishingSection
