@@ -44,10 +44,10 @@ const ExperienceCarouselSection = ({
   return (
     <section
       ref={sectionRef}
-      className="relative text-white sm:min-h-full md:min-h-[80vh]"
-      style={{ height: '80vh' }}
+      className="relative text-white"
+      style={{ height: `${total * 100}vh` }}
     >
-      <div className="sticky top-0 flex items-center overflow-hidden min-h-[80px]">
+      <div className="sticky top-0 flex items-center overflow-hidden min-h-screen">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-0 md:py-16">
 
           {/* GRID */}

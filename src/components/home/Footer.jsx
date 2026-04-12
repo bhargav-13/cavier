@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import LogoMark from "../../assets/logo-footer.png";
+import logo from "../../assets/logo1.png";
+import Search from "../../assets/home/search.png";
+import Cart from "../../assets/home/cart.png";
+import Heart from "../../assets/home/heart.png";
+import User from "../../assets/home/user.png";
 import { FaLinkedin } from "react-icons/fa";
 import { RiFacebookBoxLine } from "react-icons/ri";
 import { BsTwitterX } from "react-icons/bs";
@@ -42,7 +47,7 @@ const Footer = () => {
 const footerScrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start end", "end end"],
   });
 
   useEffect(() => {
@@ -79,7 +84,6 @@ const footerScrollRef = useRef(null);
     mass: 0.8,
   });
 
-  const contentY = useTransform(smoothProgress, [0, 1], [200, 0]);
   const logoY = useTransform(smoothProgress, [0, 1], [-1, 0]);
   const logoScale = useTransform(smoothProgress, [0, 1], [0.9, 1]);
 
@@ -87,28 +91,59 @@ const footerScrollRef = useRef(null);
     <div
       ref={containerRef}
       id="site-footer"
-      className="relative h-[900px] md:h-screen w-full"
+      className="relative h-screen w-full"
       style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
     >
-      <div  ref={footerScrollRef} className="fixed bottom-0 left-0 h-[800px] w-full bg-white text-page overflow-y-auto hide-scrollbar">
+      <div ref={footerScrollRef} className="fixed bottom-0 left-0 h-screen w-full bg-white text-page overflow-y-auto hide-scrollbar">
         
         <motion.footer
-          style={{ y: contentY }}
-          className="flex flex-col h-full pb-5 "
+          className="flex flex-col h-full py-4 md:py-6"
         >
-          
+
+          {/* NAVBAR */}
+          <div className="px-6 md:px-12 flex items-center justify-between mb-4 md:mb-6">
+            {/* LEFT NAV */}
+            <div className="hidden md:flex items-center gap-6 text-sm font-medium text-page">
+              <a href="#" className="hover:opacity-60 transition-opacity">Products</a>
+              <a href="#" className="hover:opacity-60 transition-opacity">Category</a>
+              <a href="#" className="hover:opacity-60 transition-opacity">Contact</a>
+            </div>
+
+            {/* LOGO */}
+            <div className="absolute left-1/2 -translate-x-1/2">
+              <img src={logo} alt="Cavier" className="w-[120px] md:w-[150px] invert" />
+            </div>
+
+            {/* RIGHT ICONS */}
+            <div className="flex items-center gap-2 md:gap-3 ml-auto">
+              <div className="hidden md:flex items-center justify-center border border-page w-9 h-9 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
+                <img src={Cart} alt="cart" className="w-4 h-4 object-contain invert" />
+              </div>
+              <div className="hidden md:flex items-center justify-center border border-page w-9 h-9 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
+                <img src={Heart} alt="wishlist" className="w-4 h-4 object-contain invert" />
+              </div>
+              <div className="hidden md:flex items-center justify-center border border-page w-9 h-9 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
+                <img src={User} alt="user" className="w-4 h-4 object-contain invert" />
+              </div>
+              <div className="hidden md:flex items-center border border-page px-3 py-1.5 gap-2 rounded-full cursor-pointer hover:opacity-60 transition-opacity">
+                <img src={Search} alt="search" className="w-4 h-4 object-contain invert" />
+                <span className="text-sm text-page font-light">Search</span>
+              </div>
+            </div>
+          </div>
+
           {/* MAIN CONTENT */}
-          <div className="flex-1 flex flex-col justify-between">
-            
+          <div className="flex-1 flex flex-col justify-between min-h-0">
+
             {/* TOP SECTION */}
             <div className="container mx-auto px-6 md:px-12">
-              <div className="grid gap-12 lg:grid-cols-[repeat(4,minmax(0,1fr))_1.1fr]">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[repeat(4,minmax(0,1fr))_1.1fr] gap-4 md:gap-8">
                 {sitemapColumns.map((column, idx) => (
                   <div key={idx}>
-                    <h3 className="mb-6 text-xl font-semibold drop-shadow-[0_3px_0_rgba(0,0,0,0.2)]">
+                    <h3 className="mb-2 md:mb-4 text-base md:text-lg font-semibold drop-shadow-[0_3px_0_rgba(0,0,0,0.2)]">
                       {column.title}
                     </h3>
-                    <ul className="space-y-3 text-[16px] md:text-sm">
+                    <ul className="space-y-1 md:space-y-2 text-sm">
                       {column.links.map((link, i) => (
                         <li key={i}>
                           <a
@@ -124,49 +159,38 @@ const footerScrollRef = useRef(null);
                 ))}
 
                 {/* CONTACT */}
-                 <div className="">
-            <p className="text-sm font-normal leading-4 text-page">
-              <strong className="font-semibold">Phone:</strong> +91 7433993997,
-              7433993998
-            </p>
-            <p className="mt-1 text-sm font-normal leading-6 text-page">
-              <strong className="font-semibold">Trade Enq:</strong> +91 73 83 93
-              33 33
-            </p>
-            <p className="text-sm font-normal leading-6 text-page">
-              <strong className="font-semibold">Toll-free:</strong> 1800 313
-              7724
-            </p>
-            <p className="text-sm font-normal leading-6 text-page">
-              <strong className="font-semibold">Email:</strong>{" "}
-              info@cavierindia.com
-            </p>
-
-            <div className="mt-3 ">
-              <h4 className="text-md font-semibold text-md text-page">
-                Working Hours:
-              </h4>
-              <p className="text-sm font-normal leading-6 text-page">
-                Saturday-Thursday: 8:30AM to 7PM
-              </p>
-              <p className="text-sm font-normal leading-5 text-page">
-                Fridays: Closed
-              </p>
+                <div className="col-span-2 md:col-span-1">
+                  <p className="text-sm font-normal leading-5 text-page">
+                    <strong className="font-semibold">Phone:</strong> +91 7433993997, 7433993998
+                  </p>
+                  <p className="text-sm font-normal leading-5 text-page">
+                    <strong className="font-semibold">Trade Enq:</strong> +91 73 83 93 33 33
+                  </p>
+                  <p className="text-sm font-normal leading-5 text-page">
+                    <strong className="font-semibold">Toll-free:</strong> 1800 313 7724
+                  </p>
+                  <p className="text-sm font-normal leading-5 text-page">
+                    <strong className="font-semibold">Email:</strong> info@cavierindia.com
+                  </p>
+                  <div className="mt-2">
+                    <h4 className="text-sm font-semibold text-page">Working Hours:</h4>
+                    <p className="text-sm font-normal leading-5 text-page">Saturday-Thursday: 8:30AM to 7PM</p>
+                    <p className="text-sm font-normal leading-5 text-page">Fridays: Closed</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-            </div>
-          </div>
 
-            <div className="border-t border-black my-4" />
+            <div className="border-t border-black my-3 md:my-4" />
 
             {/* LOGO + ADDRESS */}
             <div className="container mx-auto px-6 md:px-12">
-              <div className="grid items-center gap-6 lg:grid-cols-[1.3fr_0.4fr]">
-                
+              <div className="grid items-center gap-4 lg:grid-cols-[1.3fr_0.4fr]">
+
                 {/* LOGO */}
                 <motion.div
                   style={{ y: logoY, scale: logoScale }}
-                  className=" flex items-end"
+                  className="flex items-end"
                 >
                   <img
                     src={LogoMark}
@@ -176,14 +200,14 @@ const footerScrollRef = useRef(null);
                 </motion.div>
 
                 {/* RIGHT */}
-                <div className="space-y-4">
+                <div className="space-y-2 md:space-y-3">
                   <p className="font-semibold text-sm leading-relaxed">
                     O1, Vision Industrial Park, Changa,
                     <br />
                     Lalpur Road, Jamnagar 361 012, INDIA
                   </p>
 
-                  <p className="mt-5 text-md font-semibold text-page">
+                  <p className="text-sm font-semibold text-page">
                     +91 74339 93997
                   </p>
 
@@ -198,7 +222,7 @@ const footerScrollRef = useRef(null);
             </div>
           </div>
 
-          <div className="mt-6 border-t border-page pt-4 px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
+          <div className="border-t border-page pt-3 px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
             <p>Copyright 2026 - Cavier India All Copyrights Reserved</p>
             <p>
               Made with <span className="text-red-500">❤</span> by Codelix
