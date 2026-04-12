@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 const IntroSection = () => {
   return (
     <section className="bg-page text-foreground">
-      <div className="px-6 md:px-12 py-20 md:py-28">
+      <div className="px-6 md:px-12 py-10 md:py-20">
 
         <motion.div
           className="mx-auto max-w-5xl text-center"

@@ -198,7 +198,7 @@ const finishingSection = () => {
         style={{ height: '200vh' }}
       >
         <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
-          <div className="mx-auto w-full max-w-[1300px] px-6 py-16 md:px-12 md:py-10">
+          <div className="mx-auto w-full max-w-[1300px] px-6 py-10 md:px-12 md:py-10">
             <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.35fr] lg:gap-14">
               
               {/* LEFT CONTENT */}
@@ -209,7 +209,7 @@ const finishingSection = () => {
                 viewport={{ once: false, amount: 0.35 }}
                 className="max-w-[400px] z-10 pt-10"
               >
-                <h2 className="text-[30px] font-normal leading-tight tracking-[0.03em] md:text-[38px] text-white">
+                <h2 className="text-[32px] md:text-4xl font-normal leading-tight tracking-[0.03em] md:text-[38px] text-white">
                   The Finishing Touch
                 </h2>
 

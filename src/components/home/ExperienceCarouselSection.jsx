@@ -54,8 +54,8 @@ const ExperienceCarouselSection = ({
           <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
 
             {/* LEFT */}
-            <div className="max-w-full lg:max-w-sm text-center lg:text-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">
+            <div className="max-w-full lg:max-w-sm sm:text-start md:text-center lg:text-left">
+              <h2 className="text-2xl sm:text-[32px] md:text-4xl font-semibold leading-tight">
                 {title}
               </h2>
 

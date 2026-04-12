@@ -35,7 +35,7 @@ const ArrowIcon = () => {
 const CraftSection = () => {
   return (
     <section className="bg-page text-foreground">
-      <div className="container mx-auto px-6 md:px-12 py-20 md:pt-20 md:pb-0">
+      <div className="container mx-auto px-6 md:px-12 py-10 md:pt-20 md:pb-0">
 
         {/* Heading */}
         <motion.div
@@ -59,7 +59,7 @@ const CraftSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.12 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden h-[320px] md:h-[500px] cursor-pointer justify-center items-center align-middle"
+              className="group relative overflow-hidden h-[420px] md:h-[500px] cursor-pointer justify-center items-center align-middle"
             >
               {/* Image */}
               <img
