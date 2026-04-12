@@ -1,7 +1,23 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Halyard Micro Book";
+  src: url("./assets/fonts/Halyard_Micro_Book_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Brittany Signature";
+  src: url("./assets/fonts/BrittanySignature.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: "Halyard Micro", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Halyard Micro Book", "Halyard Micro", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-serif: "Georgia", "Times New Roman", serif;
   --color-page: #1f1f21;
   --color-surface: #202020;

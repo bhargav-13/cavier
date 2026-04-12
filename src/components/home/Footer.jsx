@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import LogoMark from "../../assets/logo-footer.png";
 import { FaLinkedin } from "react-icons/fa";
 import { RiFacebookBoxLine } from "react-icons/ri";
@@ -35,51 +37,67 @@ const sitemapColumns = [
   },
 ];
 
-const FooterColumn = ({ title, links }) => {
-  return (
-    <div>
-      <h3 className="mb-8 text-xl font-semibold tracking-[0.02em] text-page drop-shadow-[0_3px_0_rgba(5,5,5,0.2)] md:text-[xl">
-        {title}
-      </h3>
-      <ul className="space-y-5 text-[16px] leading-none md:text-sm font-normal text-page">
-        {links.map((link) => (
-          <li key={link}>
-            <a
-              href="#"
-              className="transition-opacity duration-200 drop-shadow-[0_3px_0_rgba(0,0,0,0.2)] hover:text-page"
-            >
-              {link}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-const SocialIcon = ({ children, label }) => {
-  return (
-    <a
-      href="#"
-      aria-label={label}
-      className="flex h-8 w-8 items-center justify-center rounded-sm border border-border text-page transition-colors hover:border-foreground hover:text-foreground"
-    >
-      {children}
-    </a>
-  );
-}
-
 const Footer = () => {
-  return (
-    <footer className="bg-foreground text-page">
-      <div className="container mx-auto px-6 py-14 md:px-12 md:py-16">
-        <div className="grid gap-12 lg:grid-cols-[repeat(4,minmax(0,1fr))_1.1fr]">
-          {sitemapColumns.map((column) => (
-            <FooterColumn key={column.title + column.links[0]} {...column} />
-          ))}
+  const containerRef = useRef(null);
 
-          <div className="">
-            <p className="text-sm font-normal leading-6 text-page">
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 20,
+    mass: 0.8,
+  });
+
+  const contentY = useTransform(smoothProgress, [0, 1], [200, 0]);
+  const logoY = useTransform(smoothProgress, [0, 1], [-1, 0]);
+  const logoScale = useTransform(smoothProgress, [0, 1], [0.9, 1]);
+
+  return (
+    <div
+      ref={containerRef}
+      id="site-footer"
+      className="relative h-[900px] w-full"
+      style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
+    >
+      <div className="fixed bottom-0 left-0 h-[800px] w-full bg-white text-page overflow-y-auto">
+        
+        <motion.footer
+          style={{ y: contentY }}
+          className="flex flex-col h-full py-10"
+        >
+          
+          {/* MAIN CONTENT */}
+          <div className="flex-1 flex flex-col justify-between">
+            
+            {/* TOP SECTION */}
+            <div className="container mx-auto px-6 md:px-12">
+              <div className="grid gap-12 lg:grid-cols-[repeat(4,minmax(0,1fr))_1.1fr]">
+                {sitemapColumns.map((column, idx) => (
+                  <div key={idx}>
+                    <h3 className="mb-6 text-xl font-semibold drop-shadow-[0_3px_0_rgba(0,0,0,0.2)]">
+                      {column.title}
+                    </h3>
+                    <ul className="space-y-3 text-[16px] md:text-sm">
+                      {column.links.map((link, i) => (
+                        <li key={i}>
+                          <a
+                            href="#"
+                            className="hover:opacity-60 transition-opacity drop-shadow-[0_3px_0_rgba(0,0,0,0.2)]"
+                          >
+                            {link}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+
+                {/* CONTACT */}
+                 <div className="">
+            <p className="text-sm font-normal leading-4 text-page">
               <strong className="font-semibold">Phone:</strong> +91 7433993997,
               7433993998
             </p>
@@ -108,55 +126,61 @@ const Footer = () => {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="mx-auto mt-6 border-t-2 border-black px-6 pb-10 md:px-12">
-        <div className="container mt-40">
-          {/* MAIN ROW */}
-          <div className="grid items-center gap-6 lg:grid-cols-[1.6fr_0.5fr]">
-            {/* LEFT LOGO */}
-            <div className="relative flex items-end">
-              <img
-                src={LogoMark}
-                alt="Cavier"
-                className="w-6xl object-contain "
-              />
             </div>
+          </div>
 
-            {/* RIGHT TEXT */}
-            <div className="p-4">
-              <p className="text-md font-semibold leading-5 text-page">
-                O1, Vision Industrial Park
-                <br />
-                Changa, Lalpur Road
-                <br />
-                Jamnagar 361 012, INDIA
-              </p>
+            <div className="border-t border-black my-4" />
 
-              <p className="mt-5 text-md font-semibold text-page">
-                +91 74339 93997
-              </p>
+            {/* LOGO + ADDRESS */}
+            <div className="container mx-auto px-6 md:px-12">
+              <div className="grid items-center gap-6 lg:grid-cols-[1.3fr_0.4fr]">
+                
+                {/* LOGO */}
+                <motion.div
+                  style={{ y: logoY, scale: logoScale }}
+                  className=" flex items-end"
+                >
+                  <img
+                    src={LogoMark}
+                    alt="Cavier"
+                    className="w-full max-w-4xl object-contain"
+                  />
+                </motion.div>
 
-              <div className="mt-4 flex items-center gap-3 text-page">
-                <FaLinkedin className="h-5 w-5" />
-                <RiFacebookBoxLine className="h-6 w-6" />
-                <BsTwitterX className="h-5 w-5" />
-                <TbBrandPinterest className="h-6 w-6" />
+                {/* RIGHT */}
+                <div className="space-y-4">
+                  <p className="font-semibold text-sm leading-relaxed">
+                    O1, Vision Industrial Park, Changa,
+                    <br />
+                    Lalpur Road, Jamnagar 361 012, INDIA
+                  </p>
+
+                  <p className="mt-5 text-md font-semibold text-page">
+                    +91 74339 93997
+                  </p>
+
+                  <div className="flex items-center gap-4 text-xl">
+                    <FaLinkedin className="cursor-pointer hover:text-blue-600" />
+                    <RiFacebookBoxLine className="cursor-pointer hover:text-blue-500" />
+                    <BsTwitterX className="cursor-pointer hover:text-gray-700" />
+                    <TbBrandPinterest className="cursor-pointer hover:text-red-600" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* BOTTOM BAR */}
-          <div className="mt-10 border-t border-page pt-4 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
+          <div className="mt-6 border-t border-page pt-4 px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
             <p>Copyright 2026 - Cavier India All Copyrights Reserved</p>
             <p>
               Made with <span className="text-red-500">❤</span> by Codelix
             </p>
           </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
-export default Footer
+        </motion.footer>
+      </div>
+    </div>
+  );
+};
+
+export default Footer;

@@ -27,28 +27,29 @@ const ExperienceCarouselSection = ({
     offset: ['start start', 'end end'],
   })
 
-  // 🔥 Duplicate cards for infinite illusion
   const loopedCards = useMemo(() => {
     return [...cards, ...cards, ...cards]
   }, [cards])
 
   const total = cards.length
 
-  // virtual scroll index
   const virtualIndex = useTransform(
     scrollYProgress,
-    [0, 1],
-    [0, total]
+    [1, 0],
+    [1, total]
   )
+
+  // Smooth progress for scrollbar
+  const progress = useTransform(scrollYProgress, [0, 1], [1, 0])
 
   return (
     <section
       ref={sectionRef}
       className="relative text-white"
-      style={{ height: '300vh' }}
+      style={{ height: '70vh' }}
     >
-      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-20">
+      <div className="sticky top-0 flex min-h-auto items-center overflow-hidden">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-5">
 
           <div className="grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
 
@@ -65,9 +66,11 @@ const ExperienceCarouselSection = ({
             </div>
 
             {/* RIGHT */}
-            <div className="relative h-[420px] flex items-center justify-center">
+            <div className="relative h-[360px] flex flex-col justify-center">
 
-              {loopedCards.map((card, index) => {
+              {/* CARDS */}
+              <div className="relative flex-1 flex items-center justify-center">
+                {loopedCards.map((card, index) => {
 
                 // 🔥 normalize index into loop
                 const position = useTransform(virtualIndex, (v) => {
@@ -81,41 +84,52 @@ const ExperienceCarouselSection = ({
                   return diff
                 })
 
-                const x = useTransform(position, [-2, 0, 2], [-240, 0, 240])
-                const scale = useTransform(position, [-2, 0, 2], [0.8, 1, 0.8])
-                const opacity = useTransform(position, [-2, 0, 2], [0.2, 1, 0.2])
-                const zIndex = useTransform(position, (v) =>
-                  Math.round(100 - Math.abs(v) * 10)
-                )
+                  const x = useTransform(position, [-2, 0, 2], [-240, 0, 240])
+                  const scale = useTransform(position, [-2, 0, 2], [0.8, 1, 0.8])
+                  const opacity = useTransform(position, [-2, 0, 2], [0.2, 1, 0.2])
+                  const zIndex = useTransform(position, (v) =>
+                    Math.round(100 - Math.abs(v) * 10)
+                  )
 
-                return (
-                  <motion.article
-                    key={index}
-                    className="absolute w-[280px] md:w-[420px] rounded-[18px] border border-white/20 bg-[#2a2a2a] p-5 shadow-xl"
-                    style={{
-                      x,
-                      scale,
-                      opacity,
-                      zIndex,
-                    }}
-                  >
-                    <h3 className="text-sm font-medium">
-                      {card.name}
-                    </h3>
-                    <p className="text-xs italic">
-                      -{card.role}
-                    </p>
+                  return (
+                    <motion.article
+                      key={index}
+                      className="absolute w-[280px] md:w-[420px] rounded-[18px] border border-white/20 bg-[#2a2a2a] p-5 shadow-xl"
+                      style={{
+                        x,
+                        scale,
+                        opacity,
+                        zIndex,
+                      }}
+                    >
+                      <h3 className="text-sm font-medium">
+                        {card.name}
+                      </h3>
+                      <p className="text-xs italic">
+                        -{card.role}
+                      </p>
 
-                    <p className="mt-4 text-[13px] leading-6">
-                      {card.quote}
-                    </p>
+                      <p className="mt-4 text-[13px] leading-6">
+                        {card.quote}
+                      </p>
 
-                    <div className="mt-5">
-                      <StarRow className="w-4 h-4"  />
-                    </div>
-                  </motion.article>
-                )
-              })}
+                      <div className="mt-5">
+                        <StarRow />
+                      </div>
+                    </motion.article>
+                  )
+                })}
+              </div>
+
+              {/* 🔥 SCROLLBAR (BOTTOM RIGHT) */}
+              <div className="mt-4 flex justify-end">
+                <div className="h-[2px] w-full bg-white/20 rounded-full overflow-hidden">
+                  <motion.div
+                    style={{ scaleX: progress }}
+                    className="h-full bg-white origin-left rounded-full"
+                  />
+                </div>
+              </div>
 
             </div>
 

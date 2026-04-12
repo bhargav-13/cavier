@@ -26,13 +26,14 @@ const Hero = () => {
           duration: 2,
           ease: [0.22, 1, 0.36, 1],
         }}
-        style={{ y: y1 }}
+        
         className="absolute inset-0 z-0"
       >
         <img
           src={HeroImage}
           alt="Hero"
           className="w-full h-full object-cover "
+          style={{ objectPosition: "center 60%" }}
         />
 
         {/* DARK OVERLAY */}
@@ -64,7 +65,7 @@ const Hero = () => {
             delay: 1.4,
             duration: 1,
           }}
-          className="text-white mt-6 max-w-2xl mx-auto text-sm tracking-wide text-center"
+          className="text-white mt-6 max-w-3xl mx-auto text-sm tracking-wide text-center"
         >
           Eco-friendly, lead-free bath fittings designed to meet global safety standards. Pioneering innovation with high-performance solutions for modern infrastructure.
         </motion.p>
