@@ -51,7 +51,7 @@ const CraftSection = () => {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 px-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 p-0 md:px-40">
           {craftCards.map((card, index) => (
             <motion.article
               key={card.title}
