@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import LogoMark from "../../assets/logo-footer.png";
 import { FaLinkedin } from "react-icons/fa";
@@ -39,12 +39,40 @@ const sitemapColumns = [
 
 const Footer = () => {
   const containerRef = useRef(null);
-
+const footerScrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
+  useEffect(() => {
+  const el = footerScrollRef.current;
+  if (!el) return;
+
+  const handleWheel = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = el;
+
+    const isAtTop = scrollTop === 0;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+    if (
+      (e.deltaY < 0 && isAtTop) ||     // scrolling up at top
+      (e.deltaY > 0 && isAtBottom)     // scrolling down at bottom
+    ) {
+      e.preventDefault();
+
+      // Pass scroll to window (parallax resumes)
+      window.scrollBy({
+        top: e.deltaY,
+        behavior: "auto",
+      });
+    }
+  };
+
+  el.addEventListener("wheel", handleWheel, { passive: false });
+
+  return () => el.removeEventListener("wheel", handleWheel);
+}, []);
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 60,
     damping: 20,
@@ -59,14 +87,14 @@ const Footer = () => {
     <div
       ref={containerRef}
       id="site-footer"
-      className="relative h-[900px] w-full"
+      className="relative h-[900px] md:h-screen w-full"
       style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
     >
-      <div className="fixed bottom-0 left-0 h-[800px] w-full bg-white text-page overflow-y-auto">
+      <div  ref={footerScrollRef} className="fixed bottom-0 left-0 h-[800px] w-full bg-white text-page overflow-y-auto hide-scrollbar">
         
         <motion.footer
           style={{ y: contentY }}
-          className="flex flex-col h-full py-10"
+          className="flex flex-col h-full pb-5 "
         >
           
           {/* MAIN CONTENT */}

@@ -19,7 +19,7 @@ const ArrowIcon = () => {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
     >
       <path
         d="M5 12h13m0 0-5-5m5 5-5 5"
@@ -34,8 +34,8 @@ const ArrowIcon = () => {
 
 const CraftSection = () => {
   return (
-    <section className="bg-page  text-foreground">
-      <div className="container mx-auto px-6 py-16 md:px-12 md:py-20">
+    <section className="bg-page text-foreground">
+      <div className="container mx-auto px-6 md:px-12 py-20 md:pt-20 md:pb-0">
 
         {/* Heading */}
         <motion.div
@@ -45,13 +45,13 @@ const CraftSection = () => {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <h2 className="text-[28px] md:text-4xl font-normal text-center">
+          <h2 className="text-[28px] md:text-4xl font-normal text-start">
             Crafted for Every Bath Space
           </h2>
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 p-0 md:px-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 justify-center items-center align-middle">
           {craftCards.map((card, index) => (
             <motion.article
               key={card.title}
@@ -59,7 +59,7 @@ const CraftSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.12 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden h-[320px] md:h-[450px] cursor-pointer"
+              className="group relative overflow-hidden h-[320px] md:h-[500px] cursor-pointer justify-center items-center align-middle"
             >
               {/* Image */}
               <img
@@ -78,7 +78,7 @@ const CraftSection = () => {
                   {card.title}
                 </span>
 
-                <ArrowIcon />
+                <ArrowIcon className="w-4 h-4" />
               </div>
             </motion.article>
           ))}

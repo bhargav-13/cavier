@@ -5,7 +5,7 @@ const experienceCards = [
     name: 'James Walker',
     role: 'homeowner',
     quote:
-      'Cavier products have exceeded our expectations in terms of reliability and finish. The consistency in quality across orders makes them a reliable partner for our projects.',
+      'Cavier products have exceeded our expectations in terms of reliability and finish.',
   },
   {
     name: 'Ava Thompson',

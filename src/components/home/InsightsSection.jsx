@@ -29,7 +29,7 @@ const InsightsSection = ({
 }) => {
   return (
     <section className={`bg-page text-foreground ${className}`.trim()}>
-      <div className="mx-auto max-w-7xl px-6 py-14 md:px-12 md:py-16">
+      <div className="mx-auto max-w-7xl px-6 py-14 md:px-12 md:pt-20 md:pb-0">
           <h2 className="mb-8 text-[30px] font-normal tracking-[0.03em] text-foreground md:text-[42px]">
           {title}
         </h2>

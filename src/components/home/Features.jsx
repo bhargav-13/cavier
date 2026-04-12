@@ -39,23 +39,28 @@ const Features = () => {
 
       {/* ✅ BACKGROUND (FIXED) */}
       <motion.div
-        initial={{ scale: 1.1, opacity: 0.6 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="absolute inset-0 z-0 bg-cover object-fit bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${FeaturImage})`,
-          
-        }}
-      />
+              initial={{ scale: 1.06, opacity: 0.3 }}
+              whileInView={{ scale: 1.01, opacity: 1 }}
+              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.4 }}
+              className="absolute inset-0"
+            >
+              <img
+                src={FeaturImage}
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-cover object-center object-fit"
+                style={{ objectPosition: "center 40%" }}
+              />
+            </motion.div>
+         
 
       {/* OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70 z-10" />
 
       {/* CONTENT */}
-      <div className="relative z-20 mx-auto max-w-5xl px-6 py-20 md:px-12 md:py-28">
-        <div className="grid grid-cols-1 gap-y-10 md:grid-cols-2">
+     <div className="relative z-20 mx-auto max-w-6xl px-6 md:px-12 min-h-screen flex items-center">  
+       <div className="grid grid-cols-1 gap-y-20 md:grid-cols-2">
 
           {features.map((feature, index) => (
             <motion.article
@@ -67,7 +72,7 @@ const Features = () => {
                 delay: index * 0.15,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              viewport={{ once: false, amount: 0.4 }} // ✅ scroll animation every time
+              viewport={{ once: false, amount: 0.4 }} 
               className="mx-auto flex max-w-md flex-col items-center text-center"
             >
               {/* ICON + TITLE */}
@@ -77,7 +82,7 @@ const Features = () => {
               </div>
 
               {/* DESCRIPTION */}
-              <p className="max-w-[400px] text-sm leading-7 text-white/80 font-normal">
+              <p className="max-w-[500px] text-sm leading-7 text-muted font-normal">
                 {feature.description}
               </p>
             </motion.article>

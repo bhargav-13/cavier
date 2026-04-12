@@ -23,7 +23,7 @@ const AccessSection = () => {
 
       <div className="absolute inset-0 " />
 
-      <div className="relative mx-auto flex min-h-[420px] max-w-7xl items-end px-6 py-8 md:min-h-[660px] md:px-12 md:py-10">
+      <div className="relative mx-auto flex min-h-[420px] max-w-7xl items-end px-6 py-8 md:min-h-[660px] md:px-12 md:pt-10 md:pb-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

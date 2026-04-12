@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, Menu, User, Heart, ShoppingCart } from "lucide-react";
+import { Menu } from "lucide-react";
+
 import logo from "../../assets/logo1.png";
+import Search from "../../assets/home/search.png";
+import Cart from "../../assets/home/cart.png";
+import Heart from "../../assets/home/heart.png";
+import User from "../../assets/home/user.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,14 +21,10 @@ const Navbar = () => {
   useEffect(() => {
     const footer = document.getElementById("site-footer");
 
-    if (!footer || typeof IntersectionObserver === "undefined") {
-      return;
-    }
+    if (!footer || typeof IntersectionObserver === "undefined") return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFooterVisible(entry.isIntersecting);
-      },
+      ([entry]) => setIsFooterVisible(entry.isIntersecting),
       { threshold: 0.05 }
     );
 
@@ -34,54 +35,67 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-34 py-8 flex items-center justify-between ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-40 py-6 flex items-center justify-between ${
         isScrolled ? "bg-page/80 backdrop-blur-md py-4" : "bg-transparent"
-      } ${isFooterVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-      aria-hidden={isFooterVisible}
+      } ${
+        isFooterVisible
+          ? "opacity-0 pointer-events-none"
+          : "opacity-100"
+      }`}
     >
-      <div className="container flex items-center gap-8">
-        <div className="hidden md:flex items-center gap-6 text-sm  font-normal text-white">
-          <Link to="/" className="hover:text-white transition-colors">
+      {/* LEFT MENU */}
+      <div className="flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 text-[16px] text-white">
+          <Link to="/" className="hover:text-white/70 transition">
             Products
           </Link>
-          <Link to="/" className="hover:text-white transition-colors">
+          <Link to="/" className="hover:text-white/70 transition">
             Category
           </Link>
-          <Link to="/" className="hover:text-white transition-colors">
+          <Link to="/" className="hover:text-white/70 transition">
             Contact
           </Link>
         </div>
+
+        {/* MOBILE MENU */}
         <div className="md:hidden">
           <Menu className="text-white w-5 h-5 cursor-pointer" />
         </div>
       </div>
 
+      {/* LOGO */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        <img src={logo} alt="logo" width={200} />
+        <img src={logo} alt="logo" className="w-[140px] md:w-[180px]" />
       </div>
-      <div className="flex items-center gap-4 md:gap-4 text-white">
-        <div className="hidden md:flex items-center border px-3 py-3 rounded-full backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-all">
-          <ShoppingCart className="w-4 h-4" />
+
+      {/* RIGHT ICONS */}
+      <div className="flex items-center gap-3 md:gap-3">
+
+        {/* CART */}
+        <div className="hidden md:flex items-center justify-center border  border-white w-10 h-10 rounded-full transition cursor-pointer">
+          <img src={Cart} alt="cart" className="w-5 h-5  object-contain " />
         </div>
 
-        <div className="hidden md:flex items-center border px-3 py-3 rounded-full backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-all">
-          <Heart className="w-4 h-4 cursor-pointer hover:text-white/70 transition-colors" />
+        {/* HEART */}
+        <div className="hidden md:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
+          <img src={Heart} alt="wishlist" className="w-5 h-5  object-contain" />
         </div>
 
-        <div className="hidden md:flex items-center border px-3 py-3 rounded-full backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-all">
-          <User className="w-4 h-4 cursor-pointer hover:text-white/70 transition-colors" />
+        {/* USER */}
+        <div className="hidden md:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
+          <img src={User} alt="user" className="w-5 h-5  object-contain font-bold" />
         </div>
 
-
-        <div className="hidden md:flex items-center border pe-4 ps-3 py-1.5 gap-2 rounded-full backdrop-blur-sm hover:bg-white/10 transition-all">
-          <Search className="w-4 h-4 text-white" />
-
+        {/* SEARCH */}
+        <div className="hidden md:flex items-center border border-white px-4 py-2 font-bold gap-2 rounded-full transition">
+          <img src={Search} alt="search" className="w-5 h-5 object-contain " />
           <input
             type="text"
             placeholder="Search"
-            className="bg-transparent outline-none text-sm  text-white placeholder-white w-28  transition-all duration-300"
+            className="bg-transparent outline-none text-[15px] text-white placeholder-white font-extralight w-32"
           />
         </div>
+
       </div>
     </nav>
   );
