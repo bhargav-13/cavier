@@ -12,11 +12,11 @@ import { TbBrandPinterest } from "react-icons/tb";
 const sitemapColumns = [
   {
     title: "Cavier",
-    links: ["Home", "About", "Dealership", "Contact", "Contact"],
+    links: ["Home", "About", "Dealership", "Contact"],
   },
   {
     title: "Shopping",
-    links: ["Shop", "Categories", "Cart", "Wishlist", "Wishlist"],
+    links: ["Shop", "Categories", "Cart", "Wishlist"],
   },
   {
     title: "Categories",
@@ -25,16 +25,14 @@ const sitemapColumns = [
       "Intermediate",
       "Economy",
       "Bath Accessories",
-      "Bath Accessories",
     ],
   },
   {
-    title: "Categories",
+    title: "Products",
     links: [
       "Cock",
       "Mixture",
       "Single Lever",
-      "Concealed Stop Cock",
       "Concealed Stop Cock",
     ],
   },
@@ -47,7 +45,7 @@ const Footer = () => {
 
        
         {/* MAIN CONTENT */}
-        <div className="flex-1 flex flex-col justify-between min-h-0">
+        <div className="flex-1 flex flex-col min-h-0">
 
           {/* TOP SECTION */}
           <div className="container mx-auto px-6 md:px-12">
@@ -95,38 +93,40 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="border-t border-black my-3 md:my-4" />
+          <div className="mt-auto">
+            <div className="border-t border-black my-3 md:my-4" />
 
-          {/* LOGO + ADDRESS */}
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="grid items-center gap-4 lg:grid-cols-[1.3fr_0.4fr]">
+            {/* LOGO + ADDRESS */}
+            <div className="container mx-auto px-6 md:px-12">
+              <div className="grid items-center gap-4 lg:grid-cols-[1.3fr_0.4fr]">
 
-              {/* LOGO */}
-              <div className="flex items-end">
-                <img
-                  src={LogoMark}
-                  alt="Cavier"
-                  className="w-full max-w-4xl object-contain"
-                />
-              </div>
+                {/* LOGO */}
+                <div className="flex items-end">
+                  <img
+                    src={LogoMark}
+                    alt="Cavier"
+                    className="w-full max-w-4xl object-contain"
+                  />
+                </div>
 
-              {/* RIGHT */}
-              <div className="space-y-2 md:space-y-3">
-                <p className="font-semibold text-sm leading-relaxed">
-                  O1, Vision Industrial Park, Changa,
-                  <br />
-                  Lalpur Road, Jamnagar 361 012, INDIA
-                </p>
+                {/* RIGHT */}
+                <div className="space-y-2 md:space-y-3">
+                  <p className="font-semibold text-sm leading-relaxed">
+                    O1, Vision Industrial Park, Changa,
+                    <br />
+                    Lalpur Road, Jamnagar 361 012, INDIA
+                  </p>
 
-                <p className="text-sm font-semibold text-page">
-                  +91 74339 93997
-                </p>
+                  <p className="text-sm font-semibold text-page">
+                    +91 74339 93997
+                  </p>
 
-                <div className="flex items-center gap-4 text-xl">
-                  <FaLinkedin className="cursor-pointer hover:text-blue-600" />
-                  <RiFacebookBoxLine className="cursor-pointer hover:text-blue-500" />
-                  <BsTwitterX className="cursor-pointer hover:text-gray-700" />
-                  <TbBrandPinterest className="cursor-pointer hover:text-red-600" />
+                  <div className="flex items-center gap-4 text-xl mb-6">
+                    <FaLinkedin className="cursor-pointer hover:text-blue-600" />
+                    <RiFacebookBoxLine className="cursor-pointer hover:text-blue-500" />
+                    <BsTwitterX className="cursor-pointer hover:text-gray-700" />
+                    <TbBrandPinterest className="cursor-pointer hover:text-red-600" />
+                  </div>
                 </div>
               </div>
             </div>

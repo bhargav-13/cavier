@@ -105,8 +105,8 @@ const ExperienceCarouselSection = ({
         height: `${total * (isMobile ? 30 : 12)}vh`,
       }}
     >
-      <div className="sticky top-0 flex items-center overflow-hidden min-h-screen md:min-h-[400px] ">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-0 md:py-0">
+      <div className="sticky top-0 flex items-start md:items-center overflow-hidden min-h-screen md:min-h-[400px]">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-16 md:pt-0 md:py-0">
 
           {/* GRID */}
           <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">

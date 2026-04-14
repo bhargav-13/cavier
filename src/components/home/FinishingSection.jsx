@@ -197,15 +197,15 @@ const FinishingSection = () => {
       >
         <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
           <div className="mx-auto w-full max-w-[1300px] px-6 py-10 md:px-12 md:py-10">
-            <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.35fr] lg:gap-14">
-              
+            <div className="flex flex-col lg:grid lg:grid-cols-[0.85fr_1.35fr] items-start gap-10 lg:gap-14">
+
               {/* LEFT CONTENT */}
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: false, amount: 0.35 }}
-                className="max-w-[400px] z-10 pt-10"
+                className="max-w-[400px] z-10 pt-10 order-2 lg:order-1"
               >
                 <h2 className="text-[32px] md:text-4xl font-normal leading-tight tracking-[0.03em] md:text-[38px] text-white">
                   The Finishing Touch
@@ -224,7 +224,7 @@ const FinishingSection = () => {
               </motion.div>
 
               {/* RIGHT SLIDER (3D Circular Track) */}
-              <div className="min-w-0 relative">
+              <div className="min-w-0 relative order-1 lg:order-2">
                 <div className="relative overflow-hidden py-24 -my-24 ">
                   <motion.div
                     style={{ 
