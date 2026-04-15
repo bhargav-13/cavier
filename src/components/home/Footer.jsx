@@ -43,12 +43,11 @@ const Footer = () => {
     <div className="fixed bottom-0 left-0 h-screen w-full z-0 bg-white text-page">
       <footer className="relative flex flex-col h-full py-4 md:py-6">
 
-       
-        {/* MAIN CONTENT */}
-        <div className="flex-1 flex flex-col min-h-0">
+        {/* MAIN CONTENT — centered vertically */}
+        <div className="flex-1 flex flex-col justify-center min-h-0">
 
-          {/* TOP SECTION */}
-          <div className="container mx-auto px-6 md:px-12">
+          {/* TOP SECTION — links + contact */}
+          <div className="container mx-auto px-6 md:px-12 mb-3 md:mb-4">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[repeat(4,minmax(0,1fr))_1.1fr] gap-4 md:gap-8">
               {sitemapColumns.map((column, idx) => (
                 <div key={idx}>
@@ -93,44 +92,41 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-auto">
-            <div className="border-t border-black my-3 md:my-4" />
+          <div className="border-t border-black my-3 md:my-4" />
 
-            {/* LOGO + ADDRESS */}
-            <div className="container mx-auto px-6 md:px-12">
-              <div className="grid items-center gap-4 lg:grid-cols-[1.3fr_0.4fr]">
+          {/* LOGO + ADDRESS — same row */}
+          <div className="container mx-auto px-6 md:px-12">
+            <div className="grid items-center gap-4 grid-cols-[1fr_auto]">
 
-                {/* LOGO */}
-                <div className="flex items-end">
-                  <img
-                    src={LogoMark}
-                    alt="Cavier"
-                    className="w-full max-w-4xl object-contain"
-                  />
-                </div>
+              {/* LOGO */}
+              <div className="flex items-center">
+                <img
+                  src={LogoMark}
+                  alt="Cavier"
+                  className="w-full max-w-4xl object-contain"
+                />
+              </div>
 
-                {/* RIGHT */}
-                <div className="space-y-2 md:space-y-3">
-                  <p className="font-semibold text-sm leading-relaxed">
-                    O1, Vision Industrial Park, Changa,
-                    <br />
-                    Lalpur Road, Jamnagar 361 012, INDIA
-                  </p>
-
-                  <p className="text-sm font-semibold text-page">
-                    +91 74339 93997
-                  </p>
-
-                  <div className="flex items-center gap-4 text-xl mb-6">
-                    <FaLinkedin className="cursor-pointer hover:text-blue-600" />
-                    <RiFacebookBoxLine className="cursor-pointer hover:text-blue-500" />
-                    <BsTwitterX className="cursor-pointer hover:text-gray-700" />
-                    <TbBrandPinterest className="cursor-pointer hover:text-red-600" />
-                  </div>
+              {/* RIGHT */}
+              <div className="space-y-2 md:space-y-3">
+                <p className="font-semibold text-sm leading-relaxed">
+                  O1, Vision Industrial Park, Changa,
+                  <br />
+                  Lalpur Road, Jamnagar 361 012, INDIA
+                </p>
+                <p className="text-sm font-semibold text-page">
+                  +91 74339 93997
+                </p>
+                <div className="flex items-center gap-4 text-xl">
+                  <FaLinkedin className="cursor-pointer hover:text-blue-600" />
+                  <RiFacebookBoxLine className="cursor-pointer hover:text-blue-500" />
+                  <BsTwitterX className="cursor-pointer hover:text-gray-700" />
+                  <TbBrandPinterest className="cursor-pointer hover:text-red-600" />
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
         <div className="border-t border-page pt-3 px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">

@@ -102,29 +102,17 @@ const ExperienceCarouselSection = ({
       ref={sectionRef}
       className="relative text-white"
        style={{
-        height: `${total * (isMobile ? 30 : 12)}vh`,
+        height: `${total * (isMobile ? 80 : 40)}vh`,
       }}
     >
-      <div className="sticky top-0 flex items-start md:items-center overflow-hidden min-h-screen md:min-h-[400px]">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 pb-10 pt-16 md:pt-0 md:py-0">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 py-10">
 
           {/* GRID */}
-          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
 
-            {/* LEFT */}
-            <div className="max-w-full lg:max-w-sm sm:text-start md:text-center lg:text-left">
-              <h2 className="text-[32px]  md:text-4xl font-semibold leading-tight">
-                {title}
-              </h2>
-
-              <button className="mt-6 inline-flex items-center gap-2 border border-white px-4 py-2 text-sm hover:bg-white hover:text-black transition">
-                {buttonLabel}
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* RIGHT */}
-            <div className="relative flex h-[250px] flex-col justify-center  md:h-[280px]">
+            {/* RIGHT (cards) — first on mobile, second on desktop */}
+            <div className="relative flex h-[250px] flex-col justify-center md:h-[280px] lg:order-2">
               <div className="relative flex flex-1 items-center justify-center">
                 {loopedCards.map((card, index) => (
                   <ExperienceCard
@@ -137,7 +125,7 @@ const ExperienceCarouselSection = ({
                 ))}
               </div>
 
-              <div className="mt-4 md:mt-4 flex justify-end">
+              <div className="mt-4 flex justify-end">
                 <div className="h-[2px] w-full bg-white/20 rounded-full overflow-hidden">
                   <motion.div
                     style={{ scaleX: progress }}
@@ -145,7 +133,18 @@ const ExperienceCarouselSection = ({
                   />
                 </div>
               </div>
+            </div>
 
+            {/* LEFT (title + button) — second on mobile, first on desktop */}
+            <div className="max-w-full lg:max-w-sm text-start lg:text-left lg:order-1">
+              <h2 className="text-[32px] md:text-4xl font-semibold leading-tight">
+                {title}
+              </h2>
+
+              <button className="mt-6 inline-flex items-center gap-2 border border-white px-4 py-2 text-sm hover:bg-white hover:text-black transition">
+                {buttonLabel}
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
 
           </div>
