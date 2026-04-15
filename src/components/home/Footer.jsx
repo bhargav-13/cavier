@@ -129,11 +129,13 @@ const Footer = () => {
 
         </div>
 
-        <div className="border-t border-page pt-3 px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
-          <p>Copyright 2026 - Cavier India All Copyrights Reserved</p>
-          <p>
-            Made with <span className="text-red-500">❤</span> by Codelix
-          </p>
+        <div className="border-t border-page pt-3">
+          <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
+            <p>Copyright 2026 - Cavier India All Copyrights Reserved</p>
+            <p>
+              Made with <span className="text-red-500">❤</span> by Codelix
+            </p>
+          </div>
         </div>
 
       </footer>
