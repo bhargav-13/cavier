@@ -36,13 +36,13 @@ const NavbarAbout = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-40 py-6 flex items-center justify-between ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 lg:px-40 py-6 flex items-center justify-between ${
         isScrolled ? "bg-page/80 backdrop-blur-md py-4" : "bg-transparent"
       } ${isFooterVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}
     >
       {/* LEFT MENU */}
       <div className="flex items-center gap-8">
-        <div className="hidden md:flex items-center gap-6 text-[16px] text-white">
+        <div className="hidden lg:flex items-center gap-6 text-[16px] text-white">
           <Link to="/" className="hover:text-white/70 transition">
             Products
           </Link>
@@ -55,7 +55,7 @@ const NavbarAbout = () => {
         </div>
 
         {/* MOBILE MENU */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Menu className="text-white w-5 h-5 cursor-pointer" />
         </div>
       </div>
@@ -74,7 +74,7 @@ const NavbarAbout = () => {
       <div className="flex items-center gap-3 md:gap-3">
         {/* CART */}
         <div
-          className={`hidden md:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
+          className={`hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
         >
@@ -83,7 +83,7 @@ const NavbarAbout = () => {
 
         {/* HEART */}
         <div
-          className={`hidden md:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
+          className={`hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
         >
@@ -92,7 +92,7 @@ const NavbarAbout = () => {
 
         {/* USER */}
         <div
-          className={`hidden md:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
+          className={`hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
         >

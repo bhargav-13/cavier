@@ -9,57 +9,51 @@ const AboutHeroSection = ({ content }) => {
   }
 
   return (
-    <section className="relative min-h-screen bg-page text-white overflow-hidden">
+    <section className="relative h-screen bg-page overflow-hidden">
       
-      {/* 🔲 MAIN SPLIT */}
-      <div className="grid min-h-screen grid-cols-1 md:grid-cols-2 ">
-        
-        {/* LEFT CONTENT */}
-        <div className="flex items-center px-6 py-10 md:px-16 lg:ps-40 md:py-0">
-          <div className="max-w-6xl mt-20">
-            
-            <Reveal>
-              <h1 className="text-xxl leading-[1.2] font-light md:text-5xl">
-                {content.title}
-              </h1>
-            </Reveal>
+      {/* RIGHT IMAGE - Positioned absolutely to fill right half from top */}
+      <motion.div
+        initial={{ scale: 1.08, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute top-0 right-0 h-full w-full md:w-[645px]"
+      >
+        <img
+          src={content.image}
+          alt={content.title}
+          className="h-full w-full object-cover"
+        />
+      </motion.div>
 
-            <Reveal delay={0.1}>
-              <p className="mt-6 text-white/60 leading-8">
-                {content.description}
-              </p>
-            </Reveal>
+      {/* LEFT CONTENT */}
+      <div className="relative z-10 flex h-full w-full items-center md:w-1/2 px-6 md:px-16 lg:ps-40 ">
+        <div className="max-w-6xl mt-10 md:mt-0">
+          
+          <Reveal>
+            <h1 className="text-3xl md:text-5xl leading-[1.2] font-light text-page md:text-foreground ">
+              {content.title}
+            </h1>
+          </Reveal>
 
-            <Reveal delay={0.2}>
-              <button
-                onClick={scrollToContent}
-                className="mt-10 flex items-center gap-3 border border-white/40 px-5 py-3 text-sm hover:bg-white hover:text-black transition"
-              >
-                Scroll Down
-                <ChevronDown size={16} />
-              </button>
-            </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-6 text-sm text-page md:text-white/60 leading-8">
+              {content.description}
+            </p>
+          </Reveal>
 
-          </div>
+          <Reveal delay={0.2}>
+            <button
+              onClick={scrollToContent}
+              className="mt-10 flex items-center gap-3 border border-page md:border-white/40 text-page md:text-foreground px-5 py-3 text-sm hover:bg-black hover:text-white md:hover:bg-white md:hover:text-black transition"
+            >
+              Scroll Down
+              <ChevronDown size={16} />
+            </button>
+          </Reveal>
+
         </div>
-
-        {/* RIGHT IMAGE */}
-        <motion.div
-          initial={{ scale: 1.08, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-[60vh] md:h-full"
-        >
-          <img
-            src={content.image}
-            alt={content.title}
-            className="h-full w-full object-cover"
-          />
-        </motion.div>
-
       </div>
     </section>
   )
 }
-
 export default AboutHeroSection

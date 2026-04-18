@@ -35,7 +35,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-40 py-6 flex items-center justify-between ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 lg:px-40 py-6 flex items-center justify-between ${
         isScrolled ? "bg-page/80 backdrop-blur-md py-4" : "bg-transparent"
       } ${
         isFooterVisible
@@ -45,7 +45,7 @@ const Navbar = () => {
     >
       {/* LEFT MENU */}
       <div className="flex items-center gap-8">
-        <div className="hidden md:flex items-center gap-6 text-[16px] text-white">
+        <div className="hidden lg:flex items-center gap-6 text-[16px] text-white">
           <Link to="/" className="hover:text-white/70 transition">
             Products
           </Link>
@@ -58,7 +58,7 @@ const Navbar = () => {
         </div>
 
         {/* MOBILE MENU */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Menu className="text-white w-5 h-5 cursor-pointer" />
         </div>
       </div>
@@ -72,17 +72,17 @@ const Navbar = () => {
       <div className="flex items-center gap-3 md:gap-3">
 
         {/* CART */}
-        <div className="hidden md:flex items-center justify-center border  border-white w-10 h-10 rounded-full transition cursor-pointer">
+        <div className="hidden lg:flex items-center justify-center border  border-white w-10 h-10 rounded-full transition cursor-pointer">
           <img src={Cart} alt="cart" className="w-5 h-5  object-contain " />
         </div>
 
         {/* HEART */}
-        <div className="hidden md:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
+        <div className="hidden lg:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
           <img src={Heart} alt="wishlist" className="w-5 h-5  object-contain" />
         </div>
 
         {/* USER */}
-        <div className="hidden md:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
+        <div className="hidden lg:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
           <img src={User} alt="user" className="w-5 h-5  object-contain font-bold" />
         </div>
 
