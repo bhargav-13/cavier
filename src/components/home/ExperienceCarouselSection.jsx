@@ -106,7 +106,7 @@ const ExperienceCarouselSection = ({
       }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10 py-10">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 md:px-10 py-10">
 
           {/* GRID */}
           <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">

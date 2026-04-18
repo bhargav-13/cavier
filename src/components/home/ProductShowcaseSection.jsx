@@ -68,7 +68,7 @@ const ProductShowcaseSection = ({
 }) => {
   return (
     <section className={`bg-pages text-foreground ${className}`.trim()}>
-      <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:pt-0 md:pb-20">
+      <div className="mx-auto max-w-6xl px-6 py-10 md:px-12 md:pt-0 md:pb-20">
         <div className="mb-8 md:mb-10">
           <h2 className="text-[32px] font-normal tracking-[0.03em] text-foreground md:text-[42px]">
             {title}

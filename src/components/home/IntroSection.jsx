@@ -5,7 +5,7 @@ const IntroSection = () => {
     <section className="bg-page text-foreground">
       <div className="px-6 md:px-12 py-10 md:py-20">
         <motion.div
-          className="mx-auto max-w-5xl text-center"
+          className="mx-auto max-w-6xl text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.4 }}

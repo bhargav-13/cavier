@@ -8,6 +8,7 @@ import TextureBath from '../../assets/home/craft-image-2.png'
 import FinishinImage1 from '../../assets/home/finishing-1.png'
 import FinishinImage2 from '../../assets/home/finishing-2.jpg'
 import FinishinImage3 from '../../assets/home/finishing-3.jpg'
+import Button from '../utils/Button'
 
 const finishingCards = [
   {
@@ -196,7 +197,7 @@ const FinishingSection = () => {
         style={{ height: '200vh' }}
       >
         <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
-          <div className="mx-auto w-full max-w-[1300px] px-6 py-10 md:px-12 md:py-10">
+          <div className="mx-auto w-full max-w-6xl px-6 py-10 md:px-12 md:py-10">
             <div className="flex flex-col lg:grid lg:grid-cols-[0.85fr_1.35fr] items-start gap-10 lg:gap-14">
 
               {/* LEFT CONTENT */}
@@ -217,10 +218,14 @@ const FinishingSection = () => {
                   performance, and lasting quality.
                 </p>
 
-                <button className="mt-10 inline-flex items-center gap-3 border border-white px-5 py-2.5 text-sm transition-all duration-300 hover:border-white hover:bg-white hover:text-black">
+                {/* <button className="mt-10 inline-flex items-center gap-3 border border-white px-5 py-2.5 text-sm transition-all duration-300 hover:border-white hover:bg-white hover:text-black">
                   View More
                   <ArrowIcon />
-                </button>
+                </button> */}
+                 <Button
+      text="View More"
+      icon={<ArrowIcon />}
+    />
               </motion.div>
 
               {/* RIGHT SLIDER (3D Circular Track) */}

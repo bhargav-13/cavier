@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/home/Navbar.jsx'
 import Footer from './components/home/Footer.jsx'
 import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
 
 const App = () => {
   return (
@@ -11,9 +12,10 @@ const App = () => {
 
       {/* Main content scrolls over the footer */}
       <div className="relative z-10 min-h-screen bg-page font-sans text-foreground selection:bg-foreground selection:text-page">
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
 

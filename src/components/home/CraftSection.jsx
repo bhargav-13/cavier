@@ -34,7 +34,7 @@ const ArrowIcon = () => {
 const CraftSection = () => {
   return (
     <section className="bg-page text-foreground">
-      <div className="mx-auto max-w-7xl px-6 md:px-12 py-6 md:pt-8 md:pb-0">
+      <div className="mx-auto max-w-6xl px-6 md:px-12 py-6 md:pt-8 md:pb-0">
 
         {/* Heading */}
         <motion.div

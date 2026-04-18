@@ -9,10 +9,12 @@ import HomeInsightsSection from '../components/home/HomeInsightsSection.jsx'
 import HomeExperienceSection from '../components/home/HomeExperienceSection.jsx'
 import ProductShowcaseSection from '../components/home/ProductShowcaseSection.jsx'
 import { cockProducts } from '../data/cavierContent.js'
+import Navbar from '../components/home/Navbar.jsx'
 
 const Home = () => {
   return (
     <>
+     <Navbar />
       <Hero />
       <IntroSection />
       <Features />
