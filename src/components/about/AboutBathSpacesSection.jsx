@@ -32,8 +32,8 @@ const AboutBathSpacesSection = ({ items }) => {
 
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/8 via-transparent to-transparent opacity-80" />
 
-                <div className="absolute bottom-5 right-6 md:bottom-6 md:right-7">
-                  <h3 className="text-[28px] font-normal tracking-[0.03em] text-black/95 md:text-[30px] lg:text-[34px]">
+                <div className="absolute bottom-5 right-3 md:bottom-6 md:right-7">
+                  <h3 className="text-lg font-normal  text-page md:text-lg lg:text-2xl">
                     {item.title}
                   </h3>
                 </div>
