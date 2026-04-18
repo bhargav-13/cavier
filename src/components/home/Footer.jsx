@@ -86,35 +86,34 @@ const Footer = () => {
 
               {/* CONTACT */}
               <div className="col-span-2 md:col-span-1">
-                <p className="text-sm leading-5">
-                  <strong>Phone:</strong> +91 7433993997, 7433993998
+                <p className="text-sm font-normal leading-5 text-page">
+                  <strong className="font-semibold">Phone:</strong> +91 7433993997, 7433993998
                 </p>
-                <p className="text-sm leading-5">
-                  <strong>Trade Enq:</strong> +91 73 83 93 33 33
+                <p className="text-sm font-normal leading-5 text-page">
+                  <strong className="font-semibold">Trade Enq:</strong> +91 73 83 93 33 33
                 </p>
-                <p className="text-sm leading-5">
-                  <strong>Toll-free:</strong> 1800 313 7724
+                <p className="text-sm font-normal leading-5 text-page">
+                  <strong className="font-semibold">Toll-free:</strong> 1800 313 7724
                 </p>
-                <p className="text-sm leading-5">
-                  <strong>Email:</strong> info@cavierindia.com
+                <p className="text-sm font-normal leading-5 text-page">
+                  <strong className="font-semibold">Email:</strong> info@cavierindia.com
                 </p>
-
                 <div className="mt-2">
-                  <h4 className="text-sm font-semibold">Working Hours:</h4>
-                  <p className="text-sm">Saturday-Thursday: 8:30AM to 7PM</p>
-                  <p className="text-sm">Fridays: Closed</p>
+                  <h4 className="text-sm font-semibold text-page">Working Hours:</h4>
+                  <p className="text-sm font-normal leading-5 text-page">Saturday-Thursday: 8:30AM to 7PM</p>
+                  <p className="text-sm font-normal leading-5 text-page">Fridays: Closed</p>
                 </div>
               </div>
-
             </div>
           </div>
 
           <div className="border-t border-black my-3 md:my-4" />
 
-          {/* LOGO + ADDRESS */}
+          {/* LOGO + ADDRESS — same row */}
           <div className="container mx-auto px-6 md:px-12">
             <div className="grid items-center gap-4 grid-cols-[1fr_auto]">
 
+              {/* LOGO */}
               <div className="flex items-center">
                 <img
                   src={LogoMark}
@@ -123,17 +122,16 @@ const Footer = () => {
                 />
               </div>
 
+              {/* RIGHT */}
               <div className="space-y-2 md:space-y-3">
                 <p className="font-semibold text-sm leading-relaxed">
                   O1, Vision Industrial Park, Changa,
                   <br />
                   Lalpur Road, Jamnagar 361 012, INDIA
                 </p>
-
-                <p className="text-sm font-semibold">
+                <p className="text-sm font-semibold text-page">
                   +91 74339 93997
                 </p>
-
                 <div className="flex items-center gap-4 text-xl">
                   <FaLinkedin className="cursor-pointer hover:text-blue-600" />
                   <RiFacebookBoxLine className="cursor-pointer hover:text-blue-500" />
@@ -141,16 +139,14 @@ const Footer = () => {
                   <TbBrandPinterest className="cursor-pointer hover:text-red-600" />
                 </div>
               </div>
-
             </div>
           </div>
 
         </div>
 
-        {/* BOTTOM */}
         <div className="border-t border-page pt-3">
-          <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold">
-            <p>Copyright 2026 - Cavier India All Rights Reserved</p>
+          <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between text-sm font-semibold text-page">
+            <p>Copyright 2026 - Cavier India All Copyrights Reserved</p>
             <p>
               Made with <span className="text-red-500">❤</span> by Codelix
             </p>
