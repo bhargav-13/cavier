@@ -3,6 +3,7 @@ import Navbar from './components/home/Navbar.jsx'
 import Footer from './components/home/Footer.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
+import Dealership from './pages/Dealership.jsx'
 import ScrollToTop from './components/utils/ScrollToTop.jsx'
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/dealership" element={<Dealership />} />
         </Routes>
       </div>
 
