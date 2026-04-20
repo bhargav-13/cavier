@@ -3,7 +3,7 @@ import Reveal from "../about/Reveal";
 
 const DealershipStepsSection = ({ steps }) => {
   return (
-    <section className="overflow-hidden bg-page px-6 py-10 text-white md:px-12 lg:px-24 lg:py-10 xl:px-40">
+    <section className="overflow-hidden bg-page px-6 py-10 text-white md:px-12 lg:px-24 lg:py-20 xl:px-40">
       <div className="mx-auto max-w-6xl text-center">
         <Reveal>
           <AboutSectionHeading
@@ -12,7 +12,7 @@ const DealershipStepsSection = ({ steps }) => {
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-0 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-16 grid gap-0 md:grid-cols-2 xl:grid-cols-4">
           {steps.map((step, index) => (
             <Reveal
               key={step.number}
