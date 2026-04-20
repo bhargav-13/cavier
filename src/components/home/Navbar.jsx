@@ -52,7 +52,7 @@ const Navbar = () => {
           <Link to="/" className="hover:text-white/70 transition">
             Category
           </Link>
-          <Link to="/" className="hover:text-white/70 transition">
+          <Link to="/contact" className="hover:text-white/70 transition">
             Contact
           </Link>
         </div>
