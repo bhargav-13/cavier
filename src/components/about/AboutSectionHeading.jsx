@@ -8,7 +8,7 @@ const AboutSectionHeading = ({ title, eyebrow, className = '' }) => {
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-[28px] md:text-4xl font-normal text-start">
+      <h2 className="text-[28px] md:text-4xl font-normal text-start ">
         {title}
       </h2>
     </Reveal>

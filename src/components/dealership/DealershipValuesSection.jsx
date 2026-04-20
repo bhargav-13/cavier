@@ -20,7 +20,7 @@ const DealershipValuesSection = ({ items }) => {
                 className="h-full"
               >
                 <div
-                className="min-h-[220px] border-b border-white/10 p-8 md:border-r even:md:border-r-1 xl:border-r xl:[&:nth-child(3n)]:border-r-0 [&:nth-last-child(-n+1)]:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 xl:[&:nth-last-child(-n+3)]:border-b-0"
+                className="min-h-[300px] border border-white/10 p-8"
                 >
                   <img src={item.image} alt={item.title} className="h-4 w-4" />
 

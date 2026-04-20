@@ -14,15 +14,18 @@ const DealershipPhilosophySection = ({ content }) => {
           </p>
         </Reveal>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.9fr] lg:gap-16">
+        <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal delay={0.14}>
-            <AboutSectionHeading
+            <p className="text-2xl md:text-3xl font-extralight text-start text-foreground/80">
+              {content.lead}
+            </p>
+            {/* <AboutSectionHeading
               eyebrow={content.eyebrow}
               title={content.lead}
-              className="max-w-xl"
-            />
+              className="max-w-xl leading-20 text-foreground/80"
+            /> */}
             </Reveal>
-          <p className="max-w-5xl self-end text-sm  text-white/60 md:text-xs md:leading-8">
+          <p className="max-w-5xl self-end text-sm text-white/60 md:text-xs md:leading-6">
             {content.body}
           </p>
         </div>
