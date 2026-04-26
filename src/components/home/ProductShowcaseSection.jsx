@@ -1,8 +1,9 @@
 import { ChevronRight, Heart, ShoppingCart } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Stars = () => {
   return (
-    <div className="flex items-center justify-center gap-0.5 text-white">
+    <div className="flex items-center justify-center gap-0.5 py-3 text-white">
       {[...Array(5)].map((_, index) => (
         <svg
           key={index}
@@ -19,38 +20,62 @@ const Stars = () => {
 
 const ProductCard = ({ item }) => {
   return (
-    <article className="group">
-      <div className="relative overflow-hidden rounded-lg h-[300px]">
+    <article className="group flex flex-col h-full">
+      {/* Image */}
+      <div className="relative overflow-hidden rounded-lg border border-foreground/60 h-[300px] flex-shrink-0">
         <button
           type="button"
           aria-label="Add to wishlist"
-          className="absolute right-2 top-2 z-10 text-white transition-colors hover:text-white"
+          className="absolute right-2 top-2 z-10 text-white"
         >
           <Heart className="h-4 w-4" />
         </button>
 
-        {/* <div className="flex aspect-square items-center justify-center"> */}
+        {item.slug ? (
+          <Link to={`/products/${item.slug}`} className="block h-full">
+            <img
+              src={item.image}
+              alt={item.title}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </Link>
+        ) : (
           <img
             src={item.image}
             alt={item.title}
-            className="h-full w-full object-cover 
-          ransition-transform duration-500 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
-        {/* </div> */}
+        )}
       </div>
 
-      <div className="px-1 pt-3 text-center">
-        <p className="text-sm leading-5 tracking-[0.01em] text-white">
-          {item.title}
-        </p>
-        <p className="mt-1 text-sm tracking-[0.02em] text-white py-2">
-          {item.price}
-        </p>
-        <Stars className="w-4 h-4 " />
+      {/* Content */}
+      <div className="px-1 pt-3 text-center flex flex-col flex-grow">
+        {item.slug ? (
+          <Link to={`/products/${item.slug}`} className="block">
+            <p className="text-sm leading-5 tracking-[0.01em] text-white">
+              {item.title}
+            </p>
+            <p className="mt-1 text-sm tracking-[0.02em] text-white py-2">
+              {item.displayPrice}
+            </p>
+          </Link>
+        ) : (
+          <>
+            <p className="text-sm leading-5 tracking-[0.01em] text-white">
+              {item.title}
+            </p>
+            <p className="mt-1 text-sm tracking-[0.02em] text-white py-2">
+              {item.price ?? item.displayPrice}
+            </p>
+          </>
+        )}
 
+        <Stars />
+
+        {/* Button sticks to bottom */}
         <button
           type="button"
-          className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm   text-whitetransition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
+          className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
         >
           <ShoppingCart className="h-4 w-4" />
           {item.actionLabel ?? 'Add to cart'}
@@ -65,34 +90,49 @@ const ProductShowcaseSection = ({
   items,
   ctaLabel = 'View More',
   className = '',
+  containerClassName = '',
+  gridClassName = '',
+  hideTitle = false,
+  hideCta = false,
+  ctaTo = '/products',
 }) => {
   return (
     <section className={`bg-pages text-foreground ${className}`.trim()}>
-      <div className="mx-auto max-w-6xl px-6 py-10 md:px-12 md:pt-0 md:pb-20">
-        <div className="mb-8 md:mb-10">
-          <h2 className="text-[32px] font-normal tracking-[0.03em] text-foreground md:text-[42px]">
-            {title}
-          </h2>
-        </div>
+      <div
+        className={`mx-auto max-w-6xl px-6 py-10 md:px-12 md:pt-0 md:pb-10 ${containerClassName}`.trim()}
+      >
+        {!hideTitle && (
+          <div className="mb-8 md:mb-10">
+            <h2 className="text-[32px] font-normal tracking-[0.03em] text-foreground md:text-[42px]">
+              {title}
+            </h2>
+          </div>
+        )}
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        {/* Grid controlled from parent */}
+        <div className={`grid ${gridClassName} items-stretch`.trim()}>
           {items.map((item, index) => (
-            <ProductCard key={`${item.title}-${index}`} item={item} />
+            <ProductCard
+              key={item.id ?? `${item.title}-${index}`}
+              item={item}
+            />
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <button
-            type="button"
-            className="inline-flex items-center gap-3 border border-foregraound px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page"
-          >
-            {ctaLabel}
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
+        {!hideCta && (
+          <div className="mt-10 flex justify-center">
+            <Link
+              to={ctaTo}
+              className="inline-flex items-center gap-3 border border-foreground px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-page"
+            >
+              {ctaLabel}
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
 }
 
-export default ProductShowcaseSection
+export default ProductShowcaseSection 

@@ -19,28 +19,28 @@ const sitemapColumns = [
   {
     title: "Shopping",
     links: [
-      { name: "Shop", path: "/shop" },
-      { name: "Categories", path: "/categories" },
-      { name: "Cart", path: "/cart" },
-      { name: "Wishlist", path: "/wishlist" },
+      { name: "Shop", path: "/products" },
+      { name: "Categories", path: "/products" },
+      { name: "Cart", path: "/products" },
+      { name: "Wishlist", path: "/products" },
     ],
   },
   {
     title: "Categories",
     links: [
-      { name: "Premium", path: "/category/premium" },
-      { name: "Intermediate", path: "/category/intermediate" },
-      { name: "Economy", path: "/category/economy" },
-      { name: "Bath Accessories", path: "/category/accessories" },
+      { name: "Premium", path: "/products" },
+      { name: "Intermediate", path: "/products" },
+      { name: "Economy", path: "/products" },
+      { name: "Bath Accessories", path: "/products" },
     ],
   },
   {
     title: "Products",
     links: [
-      { name: "Cock", path: "/product/cock" },
-      { name: "Mixture", path: "/product/mixture" },
-      { name: "Single Lever", path: "/product/single-lever" },
-      { name: "Concealed Stop Cock", path: "/product/concealed-stop-cock" },
+      { name: "Cock", path: "/products" },
+      { name: "Mixture", path: "/products" },
+      { name: "Single Lever", path: "/products" },
+      { name: "Concealed Stop Cock", path: "/products" },
     ],
   },
 ];

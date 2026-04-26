@@ -6,6 +6,8 @@ import About from './pages/About.jsx'
 import Dealership from './pages/Dealership.jsx'
 import Contact from './pages/Contact.jsx'
 import ScrollToTop from './components/utils/ScrollToTop.jsx'
+import ProductsPage from './pages/ProductCatalog.jsx'
+import ProductDetail from './pages/ProductDetail.jsx'
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/dealership" element={<Dealership />} />
           <Route path="/contact" element={<Contact />} />

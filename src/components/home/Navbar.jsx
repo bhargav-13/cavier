@@ -46,10 +46,10 @@ const Navbar = () => {
       {/* LEFT MENU */}
       <div className="flex items-center gap-8">
         <div className="hidden lg:flex items-center gap-6 text-[16px] text-white">
-          <Link to="/" className="hover:text-white/70 transition">
+          <Link to="/products" className="hover:text-white/70 transition">
             Products
           </Link>
-          <Link to="/" className="hover:text-white/70 transition">
+          <Link to="/products" className="hover:text-white/70 transition">
             Category
           </Link>
           <Link to="/contact" className="hover:text-white/70 transition">

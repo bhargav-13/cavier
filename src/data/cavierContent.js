@@ -1,7 +1,4 @@
-import CockProduct1 from '../assets/home/product-1.png'
-import CockProduct2 from '../assets/home/product-2.png'
-import CockProduct3 from '../assets/home/product-3.png'
-import CockProduct4 from '../assets/home/product-4.png'
+import { catalogProducts } from './productCatalog.js'
 
 export const products = [
   {
@@ -22,28 +19,5 @@ export const products = [
 ]
 
 export const cockProducts = [
-  {
-    title: 'SO 04 101 | Pillar Cock with Base',
-    price: 'INR 1930',
-    image: CockProduct1,
-    actionLabel: 'Add to cart',
-  },
-  {
-    title: 'SO 04 101 | Pillar Cock with Base',
-    price: 'INR 1930',
-    image: CockProduct2,
-    actionLabel: 'Add to cart',
-  },
-  {
-    title: 'SO 04 101 | Pillar Cock with Base',
-    price: 'INR 1930',
-    image: CockProduct3,
-    actionLabel: 'Add to cart',
-  },
-  {
-    title: 'SO 04 101 | Pillar Cock with Base',
-    price: 'INR 1930',
-    image: CockProduct4,
-    actionLabel: 'Add to cart',
-  },
+  ...catalogProducts.slice(0, 4),
 ]

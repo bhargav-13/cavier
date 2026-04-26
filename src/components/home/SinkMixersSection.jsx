@@ -28,7 +28,15 @@ const mixers = [
 ]
 
 const SinkMixersSection = () => {
-  return <ProductShowcaseSection title="Cavier Sink Mixers" items={mixers} />
+  return <ProductShowcaseSection
+   title="Cavier Sink Mixers"
+    items={mixers}
+     className="pt-10"
+  containerClassName="max-w-6xl px-0 py-0 md:px-0 md:pt-0 md:pb-0"
+  gridClassName=" grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4 "
+
+
+    />
 }
 
 export default SinkMixersSection
