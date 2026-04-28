@@ -4,22 +4,36 @@ import { Navigate, useParams } from "react-router-dom";
 import Navbar from "../components/home/Navbar.jsx";
 import ProductCatalogCard from "../components/products/ProductCatalogCard.jsx";
 import ProductStars from "../components/products/ProductStars.jsx";
-import { catalogProducts, getProductBySlug } from "../data/productCatalog.js";
 import Cart from "../assets/home/cart.png";
 import Heart from "../assets/home/heart.png";
 import Profile from "../assets/product/profile.jpg";
-import ProductShowcaseSection from "../components/home/ProductShowcaseSection.jsx";
+import useProduct from "../hooks/useProduct.js";
+import useProducts from "../hooks/useProducts.js";
 
 const ProductDetail = () => {
-  const { slug } = useParams();
-  const product = getProductBySlug(slug);
+  const { id } = useParams();
+  const { product, loading } = useProduct(id);
+  const { products } = useProducts();
 
-  if (!product) {
+  if (!loading && !product) {
     return <Navigate to="/products" replace />;
   }
 
-  const similarItems = catalogProducts
-    .filter((item) => item.slug !== product.slug)
+  if (!product) {
+    return (
+      <>
+        <Navbar />
+        <main className="bg-page pt-28 text-white">
+          <div className="mx-auto max-w-6xl px-6 pb-24 text-center md:px-12">
+            <p className="text-white/70">Loading product...</p>
+          </div>
+        </main>
+      </>
+    );
+  }
+
+  const similarItems = products
+    .filter((item) => item.id !== product.id)
     .slice(0, 3);
 
   return (
@@ -29,9 +43,9 @@ const ProductDetail = () => {
       <main className="bg-page pt-28 text-white">
         <div className="mx-auto max-w-6xl px-6 pb-24 md:px-12 lg:px-15">
           <section className="grid gap-10 lg:grid-cols-2 lg:items-start">
-            <div className="overflow-hidden ">
+            <div className="overflow-hidden">
               <img
-                src={product.detailImage}
+                src={product.image}
                 alt={product.title}
                 className="h-full w-full object-contain"
               />
@@ -54,7 +68,7 @@ const ProductDetail = () => {
 
               <div className="pt-20 lg:pt-24">
                 <p className="text-xl tracking-[0.08em] text-white">
-                  MRP :- ₹ {product.price}
+                  MRP :- Rs {product.price}
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -75,10 +89,9 @@ const ProductDetail = () => {
                     aria-label="Add to wishlist"
                     className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition hover:bg-white hover:text-black"
                   >
-                    {/* <Heart className="h-5 w-5" /> */}
                     <img
-                      src={Cart}
-                      alt="cart"
+                      src={Heart}
+                      alt="heart"
                       className="h-5 w-5 object-contain"
                     />
                   </button>
@@ -89,8 +102,8 @@ const ProductDetail = () => {
                     className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition hover:bg-white hover:text-black"
                   >
                     <img
-                      src={Heart}
-                      alt="heart"
+                      src={Cart}
+                      alt="cart"
                       className="h-5 w-5 object-contain"
                     />
                   </button>
@@ -98,10 +111,11 @@ const ProductDetail = () => {
               </div>
             </div>
           </section>
+
           <ul className="mt-8 space-y-6 text-lg leading-relaxed text-white/85">
             {product.features.map((feature) => (
               <li key={feature} className="flex items-center gap-4">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-foreground shrink-0"></span>
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground"></span>
                 <span>{feature}</span>
               </li>
             ))}
@@ -141,7 +155,7 @@ const ProductDetail = () => {
 
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm  text-white transition hover:bg-white hover:text-black"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm text-white transition hover:bg-white hover:text-black"
               >
                 Share your content
               </button>
@@ -157,15 +171,6 @@ const ProductDetail = () => {
               {similarItems.map((item) => (
                 <ProductCatalogCard key={item.id} product={item} />
               ))}
-
-              <ProductShowcaseSection
-                items={similarItems}
-                className="pt-10"
-                containerClassName="max-w-none px-0 py-0 md:px-0"
-                gridClassName="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-14"
-                hideTitle
-                hideCta
-              />
             </div>
           </section>
         </div>

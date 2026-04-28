@@ -1,4 +1,4 @@
-import { catalogProducts } from './productCatalog.js'
+import { fallbackCatalogProducts } from './productCatalog.js'
 
 export const products = [
   {
@@ -19,5 +19,5 @@ export const products = [
 ]
 
 export const cockProducts = [
-  ...catalogProducts.slice(0, 4),
+  ...fallbackCatalogProducts.slice(0, 4),
 ]

@@ -1,13 +1,14 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/home/Navbar.jsx'
 import Footer from './components/home/Footer.jsx'
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
-import Dealership from './pages/Dealership.jsx'
-import Contact from './pages/Contact.jsx'
 import ScrollToTop from './components/utils/ScrollToTop.jsx'
-import ProductsPage from './pages/ProductCatalog.jsx'
-import ProductDetail from './pages/ProductDetail.jsx'
+
+const Home = lazy(() => import('./pages/Home.jsx'))
+const About = lazy(() => import('./pages/About.jsx'))
+const Dealership = lazy(() => import('./pages/Dealership.jsx'))
+const Contact = lazy(() => import('./pages/Contact.jsx'))
+const ProductsPage = lazy(() => import('./pages/ProductCatalog.jsx'))
+const ProductDetail = lazy(() => import('./pages/ProductDetail.jsx'))
 
 const App = () => {
   return (
@@ -17,18 +18,26 @@ const App = () => {
       {/* Footer is fixed at z-0 — always behind the scrolling content */}
       <Footer />
 
-      {/* Main content scrolls over the footer */}
-      <div className="relative z-10 min-h-screen bg-page font-sans text-foreground selection:bg-foreground selection:text-page">
-        {/* <Navbar /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:slug" element={<ProductDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/dealership" element={<Dealership />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
+        {/* Main content scrolls over the footer */}
+        <div className="relative z-10 min-h-screen bg-page font-sans text-foreground selection:bg-foreground selection:text-page">
+          {/* <Navbar /> */}
+          <Suspense
+            fallback={
+              <div className="flex min-h-screen items-center justify-center">
+                <p className="text-white/70">Loading page...</p>
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/dealership" element={<Dealership />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
+        </div>
 
       {/* Transparent spacer = footer height.
           As content scrolls past, footer is revealed underneath.

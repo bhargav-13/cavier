@@ -1,14 +1,13 @@
 import { ChevronDown, Download, SlidersHorizontal } from "lucide-react";
 
 import {
-  catalogProducts,
   productFilters,
   catalogThemeLabel,
 } from "../../data/productCatalog.js";
 import ProductShowcaseSection from "../home/ProductShowcaseSection.jsx";
 import Button from "../utils/Button.jsx";
 
-const ProductContentSection = () => {
+const ProductContentSection = ({ items = [], loading = false }) => {
   return (
     <section className="py-20">
       {/* 🔹 FILTERS CONTAINER (WIDER) */}
@@ -45,12 +44,13 @@ const ProductContentSection = () => {
       {/* 🔹 PRODUCTS CONTAINER (NARROWER - MATCHES IMAGE) */}
       <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
         <ProductShowcaseSection
-          items={catalogProducts}
+          items={items}
           className="pt-10"
           containerClassName="max-w-none px-0 py-0 md:px-0"
           gridClassName="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-14"
           hideTitle
           hideCta
+          emptyMessage={loading ? "Loading products..." : "No products available yet."}
         />
       </div>
 

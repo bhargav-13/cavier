@@ -31,8 +31,8 @@ const ProductCard = ({ item }) => {
           <Heart className="h-4 w-4" />
         </button>
 
-        {item.slug ? (
-          <Link to={`/products/${item.slug}`} className="block h-full">
+        {item.id ? (
+          <Link to={`/products/${item.id}`} className="block h-full">
             <img
               src={item.image}
               alt={item.title}
@@ -50,13 +50,13 @@ const ProductCard = ({ item }) => {
 
       {/* Content */}
       <div className="px-1 pt-3 text-center flex flex-col flex-grow">
-        {item.slug ? (
-          <Link to={`/products/${item.slug}`} className="block">
+        {item.id ? (
+          <Link to={`/products/${item.id}`} className="block">
             <p className="text-sm leading-5 tracking-[0.01em] text-white">
               {item.title}
             </p>
             <p className="mt-1 text-sm tracking-[0.02em] text-white py-2">
-              {item.displayPrice}
+              INR {item.price}
             </p>
           </Link>
         ) : (
@@ -65,7 +65,7 @@ const ProductCard = ({ item }) => {
               {item.title}
             </p>
             <p className="mt-1 text-sm tracking-[0.02em] text-white py-2">
-              {item.price ?? item.displayPrice}
+              INR {item.price}
             </p>
           </>
         )}
@@ -95,6 +95,7 @@ const ProductShowcaseSection = ({
   hideTitle = false,
   hideCta = false,
   ctaTo = '/products',
+  emptyMessage = 'No products available.',
 }) => {
   return (
     <section className={`bg-pages text-foreground ${className}`.trim()}>
@@ -110,14 +111,20 @@ const ProductShowcaseSection = ({
         )}
 
         {/* Grid controlled from parent */}
-        <div className={`grid ${gridClassName} items-stretch`.trim()}>
-          {items.map((item, index) => (
-            <ProductCard
-              key={item.id ?? `${item.title}-${index}`}
-              item={item}
-            />
-          ))}
-        </div>
+        {items.length > 0 ? (
+          <div className={`grid ${gridClassName} items-stretch`.trim()}>
+            {items.map((item, index) => (
+              <ProductCard
+                key={item.id ?? `${item.title}-${index}`}
+                item={item}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-lg border border-white/15 px-6 py-16 text-center text-white/60">
+            {emptyMessage}
+          </div>
+        )}
 
         {!hideCta && (
           <div className="mt-10 flex justify-center">

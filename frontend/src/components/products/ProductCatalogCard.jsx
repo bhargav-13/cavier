@@ -15,7 +15,7 @@ const ProductCatalogCard = ({ product }) => {
           <Heart className="h-4 w-4" />
         </button>
 
-        <Link to={`/products/${product.slug}`} className="block">
+        <Link to={`/products/${product.id}`} className="block">
           <div className="overflow-hidden rounded-[6px] border border-white/55 bg-black/40">
             <div className="aspect-[4/4.45] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_rgba(0,0,0,0)_48%),linear-gradient(180deg,_#242424_0%,_#0e0e0f_100%)] p-8">
               <img
@@ -29,11 +29,11 @@ const ProductCatalogCard = ({ product }) => {
       </div>
 
       <div className="px-1 pt-4 text-center">
-        <Link to={`/products/${product.slug}`} className="block">
+        <Link to={`/products/${product.id}`} className="block">
           <h3 className="text-[13px] uppercase tracking-[0.14em] text-white/95">
             {product.title}
           </h3>
-          <p className="mt-2 text-sm tracking-[0.12em] text-white/85">{product.displayPrice}</p>
+          <p className="mt-2 text-sm tracking-[0.12em] text-white/85">INR {product.price}</p>
         </Link>
 
         <ProductStars className="mt-2" />

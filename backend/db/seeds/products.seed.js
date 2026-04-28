@@ -1,29 +1,16 @@
-import productHero from '../assets/product/product-hero.png'
-import product1 from '../assets/home/product-1.png'
-import product2 from '../assets/home/product-2.png'
-import product3 from '../assets/home/product-3.png'
-import product4 from '../assets/home/product-4.png'
+require('dotenv').config();
+const fs = require('fs/promises');
+const path = require('path');
+const { TABLE_NAMES, DEFAULTS } = require('../../config/constants');
+const supabase = require('../../config/supabase');
+const { uploadProductImageBuffer } = require('../../services/storageService');
 
-const catalogImage = productHero
-
-export const productFilters = [
-  { label: 'Price', value: 'All Prices' },
-  { label: 'Area', value: 'Bathroom' },
-  { label: 'Color Finishes', value: 'Chrome / Matte Black' },
-  { label: 'Category', value: 'Single Lever' },
-  { label: 'Shape', value: 'Square' },
-]
-
-export const catalogThemeLabel = 'Single Lever | Quarter Turn | Fully Brass'
-
-export const fallbackCatalogProducts = [
+const seedProducts = [
   {
-    id: 'so-04-101',
     title: 'SO 04 101 | Pillar Cock with Base',
-    shortTitle: 'Pillar Cock with Base',
+    short_title: 'Pillar Cock with Base',
     code: 'SO 04-101',
     price: 1930,
-    image: product2,
     area: 'Bathroom',
     finish: 'Chrome',
     category: 'Cock',
@@ -39,14 +26,13 @@ export const fallbackCatalogProducts = [
       'Corrosion-resistant internal cartridge',
       'Designed for premium contemporary bathrooms',
     ],
+    imageFile: 'product-2.png',
   },
   {
-    id: 'so-04-102',
     title: 'SO 04 102 | Angular Stop Cock',
-    shortTitle: 'Angular Stop Cock',
+    short_title: 'Angular Stop Cock',
     code: 'SO 04-102',
     price: 1930,
-    image: product3,
     area: 'Bathroom',
     finish: 'Chrome',
     category: 'Cock',
@@ -62,14 +48,13 @@ export const fallbackCatalogProducts = [
       'Leak-resistant threaded connection',
       'Suitable for modular and minimal bathrooms',
     ],
+    imageFile: 'product-3.png',
   },
   {
-    id: 'so-04-103',
     title: 'SO 04 103 | Concealed Bib Cock',
-    shortTitle: 'Concealed Bib Cock',
+    short_title: 'Concealed Bib Cock',
     code: 'SO 04-103',
     price: 1930,
-    image: product4,
     area: 'Bathroom',
     finish: 'Chrome',
     category: 'Concealed Stop Cock',
@@ -85,14 +70,13 @@ export const fallbackCatalogProducts = [
       'Electroplated for long-term shine',
       'Works well with modern wash areas',
     ],
+    imageFile: 'product-4.png',
   },
   {
-    id: 'so-04-104',
     title: 'SO 04 104 | Pillar Cock Mini',
-    shortTitle: 'Pillar Cock Mini',
+    short_title: 'Pillar Cock Mini',
     code: 'SO 04-104',
     price: 1860,
-    image: product1,
     area: 'Wash Area',
     finish: 'Matte Black',
     category: 'Cock',
@@ -108,14 +92,13 @@ export const fallbackCatalogProducts = [
       'Low-maintenance brass body',
       'Made for residential and hospitality use',
     ],
+    imageFile: 'product-1.png',
   },
   {
-    id: 'so-04-105',
     title: 'SO 04 105 | Stop Cock Pro',
-    shortTitle: 'Stop Cock Pro',
+    short_title: 'Stop Cock Pro',
     code: 'SO 04-105',
     price: 2050,
-    image: product2,
     area: 'Bathroom',
     finish: 'Chrome',
     category: 'Single Lever',
@@ -131,14 +114,13 @@ export const fallbackCatalogProducts = [
       'Pressure tested before dispatch',
       'Pairs with premium concealed systems',
     ],
+    imageFile: 'product-2.png',
   },
   {
-    id: 'so-04-106',
     title: 'SO 04 106 | Concealed Spout Mixer',
-    shortTitle: 'Concealed Spout Mixer',
+    short_title: 'Concealed Spout Mixer',
     code: 'SO 04-106',
     price: 2190,
-    image: product3,
     area: 'Bathroom',
     finish: 'Chrome',
     category: 'Mixture',
@@ -154,14 +136,13 @@ export const fallbackCatalogProducts = [
       'Optimized for concealed plumbing',
       'Built for premium residential use',
     ],
+    imageFile: 'product-3.png',
   },
   {
-    id: 'so-04-107',
     title: 'SO 04 107 | Pillar Cock Edge',
-    shortTitle: 'Pillar Cock Edge',
+    short_title: 'Pillar Cock Edge',
     code: 'SO 04-107',
     price: 1980,
-    image: product4,
     area: 'Wash Area',
     finish: 'Chrome',
     category: 'Cock',
@@ -177,14 +158,13 @@ export const fallbackCatalogProducts = [
       'Easy-turn control with precise feel',
       'Suitable for designer sink areas',
     ],
+    imageFile: 'product-4.png',
   },
   {
-    id: 'so-04-108',
     title: 'SO 04 108 | Wall Spout Mixer',
-    shortTitle: 'Wall Spout Mixer',
+    short_title: 'Wall Spout Mixer',
     code: 'SO 04-108',
     price: 2240,
-    image: product1,
     area: 'Bathroom',
     finish: 'Matte Black',
     category: 'Mixture',
@@ -200,8 +180,62 @@ export const fallbackCatalogProducts = [
       'Smooth lever action with steady flow',
       'Complements high-contrast bathroom palettes',
     ],
+    imageFile: 'product-1.png',
   },
-]
+];
 
-export const getFallbackProductById = (id) =>
-  fallbackCatalogProducts.find((product) => product.id === id)
+const homeAssetsDir = path.resolve(__dirname, '../../../frontend/src/assets/home');
+
+const upsertProduct = async (product) => {
+  const { data, error } = await supabase
+    .from(TABLE_NAMES.PRODUCTS)
+    .upsert(product, { onConflict: 'code' })
+    .select('*')
+    .single();
+
+  if (error) {
+    throw new Error(`Failed to upsert product ${product.code}: ${error.message}`);
+  }
+
+  return data;
+};
+
+const seed = async () => {
+  const imageBufferByFile = new Map();
+
+  for (const product of seedProducts) {
+    if (!imageBufferByFile.has(product.imageFile)) {
+      const filePath = path.join(homeAssetsDir, product.imageFile);
+      const buffer = await fs.readFile(filePath);
+      imageBufferByFile.set(product.imageFile, buffer);
+    }
+
+    const publicImageUrl = await uploadProductImageBuffer({
+      buffer: imageBufferByFile.get(product.imageFile),
+      productCode: product.code,
+      originalName: product.imageFile,
+      mimeType: 'image/png',
+      upsert: true,
+    });
+
+    const { imageFile, ...productData } = product;
+
+    await upsertProduct({
+      ...productData,
+      image: publicImageUrl,
+      theme: productData.theme || DEFAULTS.PRODUCT_THEME,
+      rating: productData.rating || DEFAULTS.PRODUCT_RATING,
+    });
+
+    console.log(`Seeded product: ${product.code}`);
+  }
+
+  console.log('Product seeding completed successfully.');
+};
+
+seed()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
