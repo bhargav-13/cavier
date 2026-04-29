@@ -10,5 +10,7 @@ routes.get('/', (_req, res) => {
 });
 
 routes.use('/api/products', require('./productRoutes'));
+routes.use('/api/cart', require('./cartRoutes'));
+routes.use('/api/wishlist', require('./wishlistRoutes'));
 
 module.exports = routes;

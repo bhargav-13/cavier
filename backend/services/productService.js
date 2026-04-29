@@ -43,9 +43,38 @@ const validateCreatePayload = ({ title, code, price, category, description, file
   }
 };
 
-const getProducts = async () => {
-  const rows = await productRepository.getAllProducts();
-  return rows.map(mapProductRowToDto);
+const toOptionalNumber = (value) => {
+  if (value === undefined || value === null || value === '') {
+    return undefined;
+  }
+  const parsed = Number(value);
+  return Number.isNaN(parsed) ? undefined : parsed;
+};
+
+const getProducts = async (query = {}) => {
+  const result = await productRepository.getAllProducts({
+    page: query.page,
+    pageSize: query.pageSize,
+    area: query.area,
+    finish: query.finish,
+    category: query.category,
+    shape: query.shape,
+    theme: query.theme,
+    minPrice: toOptionalNumber(query.minPrice),
+    maxPrice: toOptionalNumber(query.maxPrice),
+  });
+
+  const totalPages = Math.max(1, Math.ceil(result.total / result.pageSize));
+
+  return {
+    items: result.rows.map(mapProductRowToDto),
+    pagination: {
+      page: result.page,
+      pageSize: result.pageSize,
+      totalItems: result.total,
+      totalPages,
+    },
+  };
 };
 
 const getProductById = async (id) => {

@@ -7,10 +7,12 @@ import Search from "../../assets/home/search.png";
 import Cart from "../../assets/home/cart.png";
 import Heart from "../../assets/home/heart.png";
 import User from "../../assets/home/user.png";
+import useCommerce from "../../hooks/useCommerce.js";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const { cartCount, wishlistCount } = useCommerce();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -35,7 +37,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 lg:px-40 py-6 flex items-center justify-between ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 lg:px-36 py-6 flex items-center justify-between ${
         isScrolled ? "bg-page/80 backdrop-blur-md py-4" : "bg-transparent"
       } ${
         isFooterVisible
@@ -72,13 +74,23 @@ const Navbar = () => {
       <div className="flex items-center gap-3 md:gap-3">
 
         {/* CART */}
-        <div className="hidden lg:flex items-center justify-center border  border-white w-10 h-10 rounded-full transition cursor-pointer">
+        <div className="relative hidden lg:flex items-center justify-center border  border-white w-10 h-10 rounded-full transition cursor-pointer">
           <img src={Cart} alt="cart" className="w-5 h-5  object-contain " />
+          {cartCount > 0 && (
+            <span className="absolute -right-1 -top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] leading-none text-black">
+              {cartCount > 99 ? "99+" : cartCount}
+            </span>
+          )}
         </div>
 
         {/* HEART */}
-        <div className="hidden lg:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
+        <div className="relative hidden lg:flex items-center justify-center border border-white w-10 h-10 rounded-full transition cursor-pointer">
           <img src={Heart} alt="wishlist" className="w-5 h-5  object-contain" />
+          {wishlistCount > 0 && (
+            <span className="absolute -right-1 -top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] leading-none text-black">
+              {wishlistCount > 99 ? "99+" : wishlistCount}
+            </span>
+          )}
         </div>
 
         {/* USER */}

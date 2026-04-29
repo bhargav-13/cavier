@@ -1,5 +1,7 @@
 const TABLE_NAMES = {
   PRODUCTS: 'products',
+  CART_ITEMS: 'cart_items',
+  WISHLIST_ITEMS: 'wishlist_items',
 };
 
 const STORAGE_BUCKETS = {

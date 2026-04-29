@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/home/Footer.jsx'
 import ScrollToTop from './components/utils/ScrollToTop.jsx'
+import { CommerceProvider } from './hooks/useCommerce.js'
 
 const Home = lazy(() => import('./pages/Home.jsx'))
 const About = lazy(() => import('./pages/About.jsx'))
@@ -12,15 +13,12 @@ const ProductDetail = lazy(() => import('./pages/ProductDetail.jsx'))
 
 const App = () => {
   return (
-    <BrowserRouter>
-    <ScrollToTop />
-    
-      {/* Footer is fixed at z-0 — always behind the scrolling content */}
-      <Footer />
+    <CommerceProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Footer />
 
-        {/* Main content scrolls over the footer */}
         <div className="relative z-10 min-h-screen bg-page font-sans text-foreground selection:bg-foreground selection:text-page">
-          {/* <Navbar /> */}
           <Suspense
             fallback={
               <div className="flex min-h-screen items-center justify-center">
@@ -39,11 +37,9 @@ const App = () => {
           </Suspense>
         </div>
 
-      {/* Transparent spacer = footer height.
-          As content scrolls past, footer is revealed underneath.
-          id="site-footer" triggers Navbar to hide when in view. */}
-      <div id="site-footer" className="relative z-10 h-screen pointer-events-none" />
-    </BrowserRouter>
+        <div id="site-footer" className="relative z-10 h-screen pointer-events-none" />
+      </BrowserRouter>
+    </CommerceProvider>
   )
 }
 

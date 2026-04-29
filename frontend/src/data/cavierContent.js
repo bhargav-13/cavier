@@ -1,5 +1,3 @@
-import { fallbackCatalogProducts } from './productCatalog.js'
-
 export const products = [
   {
     title: 'Verona Gold Series',
@@ -18,6 +16,4 @@ export const products = [
   },
 ]
 
-export const cockProducts = [
-  ...fallbackCatalogProducts.slice(0, 4),
-]
+export const cockProducts = []

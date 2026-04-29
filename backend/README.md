@@ -24,7 +24,8 @@ SUPABASE_STORAGE_BUCKET=product-images
 
 1. Run [001_create_products.sql](/d:/Freelance/codelix/cavier/frontend/backend/db/migrations/001_create_products.sql) in the Supabase SQL editor.
 2. Run [002_create_product_images_bucket.sql](/d:/Freelance/codelix/cavier/frontend/backend/db/migrations/002_create_product_images_bucket.sql).
-3. If you change `SUPABASE_STORAGE_BUCKET`, create matching bucket/policies for that name.
+3. Run [003_create_cart_and_wishlist.sql](/d:/Freelance/codelix/cavier/frontend/backend/db/migrations/003_create_cart_and_wishlist.sql).
+4. If you change `SUPABASE_STORAGE_BUCKET`, create matching bucket/policies for that name.
 
 ## Seed Products
 

@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { fallbackCatalogProducts, getFallbackProductById } from '../data/productCatalog.js'
 import { fetchProductById } from '../services/productApi.js'
 
 const useProduct = (id) => {
-  const [product, setProduct] = useState(() => getFallbackProductById(id))
+  const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -20,14 +19,14 @@ const useProduct = (id) => {
           return
         }
 
-        setProduct(apiProduct || getFallbackProductById(id))
+        setProduct(apiProduct || null)
         setError('')
       } catch (loadError) {
         if (!isMounted) {
           return
         }
 
-        setProduct(getFallbackProductById(id))
+        setProduct(null)
         setError(loadError.message || 'Unable to load product')
       } finally {
         if (isMounted) {
@@ -49,7 +48,6 @@ const useProduct = (id) => {
     product,
     loading,
     error,
-    fallbackProducts: fallbackCatalogProducts,
   }
 }
 

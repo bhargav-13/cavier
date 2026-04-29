@@ -8,10 +8,12 @@ import Search from "../../assets/about/search.png";
 import Cart from "../../assets/about/cart.png";
 import Heart from "../../assets/about/heart.png";
 import User from "../../assets/about/user.png";
+import useCommerce from "../../hooks/useCommerce.js";
 
 const NavbarAbout = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const { cartCount, wishlistCount } = useCommerce();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -36,7 +38,7 @@ const NavbarAbout = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 lg:px-40 py-6 flex items-center justify-between ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 md:px-12 lg:px-36 py-6 flex items-center justify-between ${
         isScrolled ? "bg-page/80 backdrop-blur-md py-4" : "bg-transparent"
       } ${isFooterVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}
     >
@@ -74,20 +76,30 @@ const NavbarAbout = () => {
       <div className="flex items-center gap-3 md:gap-3">
         {/* CART */}
         <div
-          className={`hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
+          className={`relative hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
         >
           <img src={Cart} alt="cart" className="w-5 h-5  object-contain " />
+          {cartCount > 0 && (
+            <span className="absolute -right-1 -top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] leading-none text-black">
+              {cartCount > 99 ? "99+" : cartCount}
+            </span>
+          )}
         </div>
 
         {/* HEART */}
         <div
-          className={`hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
+          className={`relative hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
         >
           <img src={Heart} alt="wishlist" className="w-5 h-5  object-contain" />
+          {wishlistCount > 0 && (
+            <span className="absolute -right-1 -top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] leading-none text-black">
+              {wishlistCount > 99 ? "99+" : wishlistCount}
+            </span>
+          )}
         </div>
 
         {/* USER */}

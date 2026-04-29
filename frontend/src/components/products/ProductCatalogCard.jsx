@@ -3,16 +3,25 @@ import { Link } from 'react-router-dom'
 
 import ProductStars from './ProductStars.jsx'
 
-const ProductCatalogCard = ({ product }) => {
+const ProductCatalogCard = ({
+  product,
+  onToggleWishlist,
+  onToggleCart,
+  isInWishlist = false,
+  isInCart = false,
+  isProcessing = false,
+}) => {
   return (
     <article className="group">
       <div className="relative">
         <button
           type="button"
           aria-label={`Add ${product.title} to wishlist`}
+          onClick={() => onToggleWishlist?.(product.id)}
+          disabled={isProcessing}
           className="absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white transition hover:border-white/70"
         >
-          <Heart className="h-4 w-4" />
+          <Heart className={`h-4 w-4 ${isInWishlist ? 'fill-current text-red-400' : ''}`} />
         </button>
 
         <Link to={`/products/${product.id}`} className="block">
@@ -40,10 +49,12 @@ const ProductCatalogCard = ({ product }) => {
 
         <button
           type="button"
+          onClick={() => onToggleCart?.(product.id)}
+          disabled={isProcessing}
           className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/80 px-4 py-3 text-sm text-white transition hover:bg-white hover:text-black"
         >
           <ShoppingBag className="h-4 w-4" />
-          Add to cart
+          {isInCart ? 'Remove from cart' : 'Add to cart'}
         </button>
       </div>
     </article>

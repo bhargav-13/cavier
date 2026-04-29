@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
 
-import { fallbackCatalogProducts } from '../data/productCatalog.js'
-import { fetchProducts } from '../services/productApi.js'
+import { fetchProductsWithQuery } from '../services/productApi.js'
 
-const useProducts = () => {
-  const [products, setProducts] = useState(fallbackCatalogProducts)
+const useProducts = (query = {}) => {
+  const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pageSize: 12,
+    totalItems: 0,
+    totalPages: 1,
+  })
 
   useEffect(() => {
     let isMounted = true
@@ -14,20 +19,17 @@ const useProducts = () => {
     const loadProducts = async () => {
       try {
         setLoading(true)
-        const apiProducts = await fetchProducts()
+        const result = await fetchProductsWithQuery(query)
+        const apiProducts = result.items ?? []
 
         if (!isMounted) {
           return
         }
 
-        setProducts(apiProducts.length > 0 ? apiProducts : fallbackCatalogProducts)
+        setProducts(apiProducts)
+        setPagination(result.pagination)
         setError('')
       } catch (loadError) {
-        if (!isMounted) {
-          return
-        }
-
-        setProducts(fallbackCatalogProducts)
         setError(loadError.message || 'Unable to load products')
       } finally {
         if (isMounted) {
@@ -41,12 +43,23 @@ const useProducts = () => {
     return () => {
       isMounted = false
     }
-  }, [])
+  }, [
+    query.area,
+    query.finish,
+    query.category,
+    query.shape,
+    query.theme,
+    query.minPrice,
+    query.maxPrice,
+    query.page,
+    query.pageSize,
+  ])
 
   return {
     products,
     loading,
     error,
+    pagination,
   }
 }
 

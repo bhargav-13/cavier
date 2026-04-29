@@ -2,18 +2,20 @@ import { Camera } from "lucide-react";
 import { Navigate, useParams } from "react-router-dom";
 
 import Navbar from "../components/home/Navbar.jsx";
-import ProductCatalogCard from "../components/products/ProductCatalogCard.jsx";
+import ProductShowcaseSection from "../components/home/ProductShowcaseSection.jsx";
 import ProductStars from "../components/products/ProductStars.jsx";
 import Cart from "../assets/home/cart.png";
 import Heart from "../assets/home/heart.png";
 import Profile from "../assets/product/profile.jpg";
+import useCommerce from "../hooks/useCommerce.js";
 import useProduct from "../hooks/useProduct.js";
 import useProducts from "../hooks/useProducts.js";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { product, loading } = useProduct(id);
-  const { products } = useProducts();
+  const { products } = useProducts({ page: 1, pageSize: 50 });
+  const { toggleWishlist, toggleCart, isInWishlist, isInCart, isProcessing } = useCommerce();
 
   if (!loading && !product) {
     return <Navigate to="/products" replace />;
@@ -74,6 +76,8 @@ const ProductDetail = () => {
                 <div className="mt-8 flex flex-wrap items-center gap-4">
                   <button
                     type="button"
+                    onClick={() => toggleCart(product.id)}
+                    disabled={isProcessing(product.id)}
                     className="inline-flex flex-1 items-center justify-center gap-3 rounded-full border border-white/80 px-3 py-3 text-sm text-white transition hover:bg-white hover:text-black"
                   >
                     <img
@@ -81,18 +85,20 @@ const ProductDetail = () => {
                       alt="cart"
                       className="h-4 w-4 object-contain"
                     />
-                    Add to cart
+                    {isInCart(product.id) ? "Remove from cart" : "Add to cart"}
                   </button>
 
                   <button
                     type="button"
                     aria-label="Add to wishlist"
+                    onClick={() => toggleWishlist(product.id)}
+                    disabled={isProcessing(product.id)}
                     className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition hover:bg-white hover:text-black"
                   >
                     <img
                       src={Heart}
                       alt="heart"
-                      className="h-5 w-5 object-contain"
+                      className={`h-5 w-5 object-contain ${isInWishlist(product.id) ? "opacity-100" : "opacity-75"}`}
                     />
                   </button>
 
@@ -167,11 +173,20 @@ const ProductDetail = () => {
               Similar items
             </h2>
 
-            <div className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-              {similarItems.map((item) => (
-                <ProductCatalogCard key={item.id} product={item} />
-              ))}
-            </div>
+            <ProductShowcaseSection
+              items={similarItems}
+              className="pt-6"
+              containerClassName="max-w-none px-0 py-0"
+              gridClassName="grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+              hideTitle
+              hideCta
+              emptyMessage="No similar products available."
+              onToggleWishlist={toggleWishlist}
+              onToggleCart={toggleCart}
+              isInWishlist={isInWishlist}
+              isInCart={isInCart}
+              isProcessing={isProcessing}
+            />
           </section>
         </div>
       </main>

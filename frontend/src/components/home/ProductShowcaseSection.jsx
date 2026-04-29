@@ -18,7 +18,14 @@ const Stars = () => {
   )
 }
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({
+  item,
+  onToggleWishlist,
+  onToggleCart,
+  isInWishlist,
+  isInCart,
+  isProcessing = false,
+}) => {
   return (
     <article className="group flex flex-col h-full">
       {/* Image */}
@@ -26,9 +33,11 @@ const ProductCard = ({ item }) => {
         <button
           type="button"
           aria-label="Add to wishlist"
+          onClick={() => item.id && onToggleWishlist?.(item.id)}
+          disabled={!item.id || isProcessing}
           className="absolute right-2 top-2 z-10 text-white"
         >
-          <Heart className="h-4 w-4" />
+          <Heart className={`h-4 w-4 ${isInWishlist ? 'fill-current text-red-400' : ''}`} />
         </button>
 
         {item.id ? (
@@ -75,10 +84,12 @@ const ProductCard = ({ item }) => {
         {/* Button sticks to bottom */}
         <button
           type="button"
+          onClick={() => item.id && onToggleCart?.(item.id)}
+          disabled={!item.id || isProcessing}
           className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
         >
           <ShoppingCart className="h-4 w-4" />
-          {item.actionLabel ?? 'Add to cart'}
+          {item.id ? (isInCart ? 'Remove from cart' : item.actionLabel ?? 'Add to cart') : item.actionLabel ?? 'Add to cart'}
         </button>
       </div>
     </article>
@@ -96,6 +107,11 @@ const ProductShowcaseSection = ({
   hideCta = false,
   ctaTo = '/products',
   emptyMessage = 'No products available.',
+  onToggleWishlist,
+  onToggleCart,
+  isInWishlist,
+  isInCart,
+  isProcessing,
 }) => {
   return (
     <section className={`bg-pages text-foreground ${className}`.trim()}>
@@ -117,6 +133,11 @@ const ProductShowcaseSection = ({
               <ProductCard
                 key={item.id ?? `${item.title}-${index}`}
                 item={item}
+                onToggleWishlist={onToggleWishlist}
+                onToggleCart={onToggleCart}
+                isInWishlist={isInWishlist?.(item.id)}
+                isInCart={isInCart?.(item.id)}
+                isProcessing={isProcessing?.(item.id)}
               />
             ))}
           </div>

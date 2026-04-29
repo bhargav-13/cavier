@@ -1,8 +1,8 @@
 const asyncHandler = require('../middleware/asyncHandler');
 const productService = require('../services/productService');
 
-const getProducts = asyncHandler(async (_req, res) => {
-  const products = await productService.getProducts();
+const getProducts = asyncHandler(async (req, res) => {
+  const products = await productService.getProducts(req.query);
 
   return res.status(200).json({
     success: true,
