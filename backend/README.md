@@ -20,6 +20,12 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 SUPABASE_STORAGE_BUCKET=product-images
 ```
 
+## API Documentation
+
+Full endpoint documentation is available here:
+
+- [API_ENDPOINTS.md](/d:/Freelance/codelix/cavier/frontend/backend/API_ENDPOINTS.md)
+
 ## Supabase Setup
 
 1. Run [001_create_products.sql](/d:/Freelance/codelix/cavier/frontend/backend/db/migrations/001_create_products.sql) in the Supabase SQL editor.

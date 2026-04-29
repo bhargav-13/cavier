@@ -66,9 +66,16 @@ const Navbar = () => {
       </div>
 
       {/* LOGO */}
-      <div className="absolute left-1/2 -translate-x-1/2">
-        <img src={logo} alt="logo" className="w-[140px] md:w-[180px]" />
-      </div>
+    
+<div className="absolute left-1/2 -translate-x-1/2">
+  <Link to="/">
+    <img
+      src={logo}
+      alt="logo"
+      className="w-[140px] md:w-[180px] cursor-pointer"
+    />
+  </Link>
+</div>
 
       {/* RIGHT ICONS */}
       <div className="flex items-center gap-3 md:gap-3">
