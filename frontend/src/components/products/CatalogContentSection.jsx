@@ -168,7 +168,7 @@ const ProductContentSection = ({
       </div>
 
       {/* PRODUCTS */}
-      <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+      <div className="mx-auto max-w-6xl ">
         <ProductShowcaseSection
           items={items}
           className="pt-10"

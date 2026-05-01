@@ -77,8 +77,10 @@ const NavbarAbout = () => {
       {/* RIGHT ICONS */}
       <div className="flex items-center gap-3 md:gap-3">
         {/* CART */}
-        <div
-          className={`relative hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
+     
+        <Link
+          to="/cart"
+          aria-label="Open cart"  className={`relative hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
         >
@@ -88,10 +90,12 @@ const NavbarAbout = () => {
               {cartCount > 99 ? "99+" : cartCount}
             </span>
           )}
-        </div>
+        </Link>
 
         {/* HEART */}
-        <div
+        <Link
+          to="/wishlist"
+          aria-label="Open wishlist"
           className={`relative hidden lg:flex items-center justify-center border border-page w-10 h-10 rounded-full transition cursor-pointer  ${
             isScrolled ? "invert" : ""
           }`}
@@ -102,7 +106,7 @@ const NavbarAbout = () => {
               {wishlistCount > 99 ? "99+" : wishlistCount}
             </span>
           )}
-        </div>
+        </Link>
 
         {/* USER */}
         <div

@@ -127,7 +127,7 @@ const ProductDetail = () => {
             ))}
           </ul>
 
-          <section className="pt-24">
+          <section className="pt-20">
             <div className="flex items-center gap-4">
               <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-white">
                 <img
@@ -168,8 +168,8 @@ const ProductDetail = () => {
             </div>
           </section>
 
-          <section className="pt-28">
-            <h2 className="text-2xl tracking-[0.08em] text-white md:text-4xl">
+          <section className="pt-20">
+            <h2 className="text-xl text-white md:text-3xl">
               Similar items
             </h2>
 
