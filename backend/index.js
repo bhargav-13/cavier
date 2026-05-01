@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 const errorHandler = require('./middleware/errorHandler');
 const corsOptions = {
   origin: ["http://localhost:5173"], 
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   credentials: true,
 };
 app.use(cors(corsOptions));

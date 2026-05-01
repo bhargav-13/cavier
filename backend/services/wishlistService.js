@@ -1,5 +1,6 @@
 const wishlistRepository = require('../repositories/wishlistRepository');
 const productRepository = require('../repositories/productRepository');
+const { mapProductRowToDto } = require('../utils/productMapper');
 
 const validateClientId = (clientId) => {
   if (!clientId) {
@@ -33,6 +34,7 @@ const getWishlist = async (clientId) => {
   return {
     items: items.map((item) => ({
       productId: item.product_id,
+      product: item.products ? mapProductRowToDto(item.products) : null,
     })),
   };
 };

@@ -10,6 +10,8 @@ const Dealership = lazy(() => import('./pages/Dealership.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const ProductsPage = lazy(() => import('./pages/ProductCatalog.jsx'))
 const ProductDetail = lazy(() => import('./pages/ProductDetail.jsx'))
+const Cart = lazy(() => import('./pages/Cart.jsx'))
+const Wishlist = lazy(() => import('./pages/Wishlist.jsx'))
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/about" element={<About />} />
               <Route path="/dealership" element={<Dealership />} />
               <Route path="/contact" element={<Contact />} />

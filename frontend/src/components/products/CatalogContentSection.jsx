@@ -34,12 +34,12 @@ const ProductContentSection = ({
     []
   );
 
-  const selectedPriceLabel = useMemo(() => {
+  const selectedPriceLabel = (() => {
     if (!filters?.minPrice && !filters?.maxPrice) return "Price";
     const encoded = `${filters.minPrice || ""}-${filters.maxPrice || ""}`;
     const match = priceOptions.find((item) => item.value === encoded);
     return match?.label || "Price";
-  }, [filters?.maxPrice, filters?.minPrice, priceOptions]);
+  })();
 
   const filterItems = [
     {
@@ -96,9 +96,9 @@ const ProductContentSection = ({
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-10 md:py-20">
       {/* FILTERS CONTAINER */}
-      <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+      <div className="mx-auto max-w-6xl px-0 md:px-10 lg:px-10">
         
         {/* Top Bar */}
         <div className="flex flex-col gap-5 border-b border-white/20 pb-6 text-foreground md:flex-row md:items-center md:justify-between">

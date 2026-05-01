@@ -8,7 +8,7 @@ const ProductHeroSection = () => {
           <img
             src={productHero}
             alt="Cavier product collection"
-            className="h-full min-h-[320px] w-full object-cover object-center"
+            className="h-full min-h-screen w-full object-cover object-center"
           />
         </div>
       </div>

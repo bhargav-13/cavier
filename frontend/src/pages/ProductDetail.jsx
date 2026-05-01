@@ -1,5 +1,5 @@
 import { Camera } from "lucide-react";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 
 import Navbar from "../components/home/Navbar.jsx";
 import ProductShowcaseSection from "../components/home/ProductShowcaseSection.jsx";
@@ -70,7 +70,7 @@ const ProductDetail = () => {
 
               <div className="pt-20 lg:pt-24">
                 <p className="text-xl tracking-[0.08em] text-white">
-                  MRP :- Rs {product.price}
+                  MRP :- ₹ {product.price}
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -78,7 +78,7 @@ const ProductDetail = () => {
                     type="button"
                     onClick={() => toggleCart(product.id)}
                     disabled={isProcessing(product.id)}
-                    className="inline-flex flex-1 items-center justify-center gap-3 rounded-full border border-white/80 px-3 py-3 text-sm text-white transition hover:bg-white hover:text-black"
+                    className="inline-flex flex-1 items-center justify-center gap-3 rounded-full border border-white/80 px-3 py-3 text-sm text-white transition"
                   >
                     <img
                       src={Cart}
@@ -93,7 +93,7 @@ const ProductDetail = () => {
                     aria-label="Add to wishlist"
                     onClick={() => toggleWishlist(product.id)}
                     disabled={isProcessing(product.id)}
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition hover:bg-white hover:text-black"
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition"
                   >
                     <img
                       src={Heart}
@@ -102,17 +102,17 @@ const ProductDetail = () => {
                     />
                   </button>
 
-                  <button
-                    type="button"
+                  <Link
+                    to="/cart"
                     aria-label="Open cart"
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition hover:bg-white hover:text-black"
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 text-white transition"
                   >
                     <img
                       src={Cart}
                       alt="cart"
                       className="h-5 w-5 object-contain"
                     />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

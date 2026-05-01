@@ -21,8 +21,8 @@ const sitemapColumns = [
     links: [
       { name: "Shop", path: "/products" },
       { name: "Categories", path: "/products" },
-      { name: "Cart", path: "/products" },
-      { name: "Wishlist", path: "/products" },
+      { name: "Cart", path: "/cart" },
+      { name: "Wishlist", path: "/wishlist" },
     ],
   },
   {

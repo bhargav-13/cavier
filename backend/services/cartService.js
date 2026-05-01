@@ -1,5 +1,6 @@
 const cartRepository = require('../repositories/cartRepository');
 const productRepository = require('../repositories/productRepository');
+const { mapProductRowToDto } = require('../utils/productMapper');
 
 const validateClientId = (clientId) => {
   if (!clientId) {
@@ -34,6 +35,7 @@ const getCart = async (clientId) => {
     items: items.map((item) => ({
       productId: item.product_id,
       quantity: item.quantity,
+      product: item.products ? mapProductRowToDto(item.products) : null,
     })),
   };
 };

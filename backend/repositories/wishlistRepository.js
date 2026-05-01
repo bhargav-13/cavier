@@ -11,7 +11,7 @@ const repoError = (error, message) => {
 const listByClientId = async (clientId) => {
   const { data, error } = await supabase
     .from(TABLE_NAMES.WISHLIST_ITEMS)
-    .select('product_id')
+    .select('product_id, products(*)')
     .eq('client_id', clientId)
     .order('created_at', { ascending: false });
 

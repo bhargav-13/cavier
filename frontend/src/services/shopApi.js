@@ -47,6 +47,12 @@ export const removeFromCart = async (productId) =>
     method: 'DELETE',
   })
 
+export const updateCartQuantity = async (productId, quantity) =>
+  request(`${API_BASE_URL}/cart/items/${productId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ quantity }),
+  })
+
 export const addToWishlist = async (productId) =>
   request(`${API_BASE_URL}/wishlist/items`, {
     method: 'POST',
